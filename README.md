@@ -1,70 +1,41 @@
 # Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
+### `npm install`
 ### `npm start`
-
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+1. package.json 관련 설명   
+https://velog.io/@couchcoding/React-2-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-package.json  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. package-lock.json  
+https://hyunjun19.github.io/2018/03/23/package-lock-why-need/  
+: 의존성 트리에 대한 정보를 가지고 있으며 해당 파일이 작성도니 시점의 의존성 트리가 다시 생성될 수 있도록 보장  
+: npm create-react-app 을 통해 생성한 파일들과 지금의 것을 비교해보면 좋다  
 
-### `npm run build`
+3. create-react-app 18 —> 17  
+나의 경우 material-ui등 react 18에서 사용하지 못하는 lib를 사용하였기 때문에 17로 version 변경함  
+https://trend21c.tistory.com/2250  
+package.json --> React, react-dom 17.0.0 으로 변경 이후  
+Npm I  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. npm devDependencies  
+package.json에 devDependencies 항목에 lib 추가하기 위해서는 아래 명령어 필요
+```
+npm install <package-name> --save-dev
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. yarn 설치  
+나같은 경우 yarn add하는 경우 package.json에 추가가 되지 않아서 npm install 을 통해서 lib 추가 하였음...
+```
+Nom install -g yarn
+Yarn install
+Yarn build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+6. react + webpack + babel로 개발 환경 구축하기 (javascript)  
+https://velog.io/@jinsunee/2.-react-webpack-babel%EB%A1%9C-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0  
+webpack.config.js 설정 하는 방법 알아야 함  
+webpack과 babel을 왜 쓰는지 알아야 함  
+https://velog.io/@yon3115/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%ED%95%84%EC%88%98-Webpack%EC%9D%B4%EB%9E%80
