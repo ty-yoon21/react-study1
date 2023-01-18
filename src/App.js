@@ -1,13 +1,43 @@
+// React
 import React from "react";
-import logo from './logo.svg';
 import './App.css';
+import App from "./container/App";
 
-function App() {
-  return (
-    <div className="App">
-      Hello world :)
-    </div>
-  );
-}
+//UI
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
 
-export default App;
+//Router, redux, store, sagas...
+import { BrowserRouter as Router, Routes, Switch, Route} from "react-router-dom";
+
+const MainApp = () => (
+  <MuiPickersUtilsProvider utils={MomentUtils}>
+    <Router>
+      <Routes>
+        <Route path="/" element={<App/>} />
+      </Routes>
+    </Router>
+  </MuiPickersUtilsProvider>
+);
+
+// function MainApp() {
+//   return (
+//     <div className="App">
+//       Hello world :)
+//     </div>
+//   );
+// }
+
+
+export default MainApp;
+
+
+// function App() {
+//   return (
+//     <div className="App">
+//       Hello world :)
+//     </div>
+//   );
+// }
+
+//export default App;

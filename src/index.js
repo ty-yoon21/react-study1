@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import ReactDOM from 'react-dom/client'; --> react 18 ver
 import './index.css';
-import App from './App';
+//import MainApp from './App';
+//import MainApp from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const MainApp = require("./App").default;
+ReactDOM.render(<MainApp />, document.getElementById('root'));
 
 
 
