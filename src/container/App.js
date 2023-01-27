@@ -7,7 +7,7 @@
  * 
  */
 
-
+ 
 // React
 import React, { useState, useEffect, Suspense, lazy, Component } from "react";
 import {
@@ -19,16 +19,20 @@ import {
 import { Helmet} from "react-helmet";
 
 import Styled from './Styeld';
+import PcLeftMenu from "../components/molecules/PcLeftMenu";
+
+
 
 
 const defaultConfig = {
     layoutMode: 'Light',
     layout: 'left',
-    color: 'blue',
-    sidebarBackgrouds: '#333'
+    color: 'Blue',
+    sidebarBackgrounds: '#333',
 };
 
 const App = ({match, history}) => {
+    const [ isActive, setActive] = useState(false);
 
     const [stateConfig, setStateConfig] = useState(
         JSON.parse(window.localStorage.getItem('portal-config')) === null
@@ -40,12 +44,19 @@ const App = ({match, history}) => {
         window.localStorage.setItem('portal-config', JSON.stringify(stateConfig));        
     }, [stateConfig]
     );
+
     
+    return (    
     <Styled side = {stateConfig.layout} layoutMode={stateConfig.layoutMode}>
+        <PcLeftMenu 
+            isActive={isActive}
+            layout={stateConfig.layout}
+            color={stateConfig.color}
+            sidebarBackgrounds={defaultConfig.sidebarBackgrounds}
+        />
 
-        
     </Styled>
-
+    ); 
 
 
 
