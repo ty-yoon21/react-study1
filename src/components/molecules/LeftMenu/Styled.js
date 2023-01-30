@@ -35,9 +35,8 @@ const Styled = styled.div(
         overflow-x: hidden;
         height: 100%;
         
-        background: ${
-            sidebarBackgrounds === '#f4f4f4' ? `url(${LogoDark})` : `url(${LogoDark})`
-        } no-repeat bottom;
+        
+        
         background-position-y: 99%;
 
     }
@@ -108,14 +107,14 @@ const Styled = styled.div(
             font-size: 12px;
             text-align: left;
             
-            height: 32px;
+            height: 22px;
             margin-top: 12px;
             margin-bottom: 0px;
 
             padding-top: 7px;
             padding-right: 0px;                       
             padding-bottom: 0px;
-            paddig-left: 16px; 
+            padding-left: 16px; 
             
 
             li {
@@ -126,6 +125,7 @@ const Styled = styled.div(
                     margin-right: 5px;
                     position: relative;
                     top: -4px;
+                    padding-bottom: 0px
                 }
 
                 span {
@@ -150,9 +150,7 @@ const Styled = styled.div(
 
 
         .sidebar_open {
-            background: ${
-                sidebarBackgrounds === '#f4f4f4' ? `url(${LogoDark})` : `url(${LogoDark})`
-            } no-repeat bottom;
+            
             background-position-y: 99%;
         }
         .user_info{

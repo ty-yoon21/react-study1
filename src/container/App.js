@@ -20,7 +20,7 @@ import { Helmet} from "react-helmet";
 
 import Styled from './Styeld';
 import PcLeftMenu from "../components/molecules/PcLeftMenu";
-
+import GlobalStyle from '../common/global-styles';
 
 
 
@@ -54,7 +54,7 @@ const App = ({match, history}) => {
             color={stateConfig.color}
             sidebarBackgrounds={defaultConfig.sidebarBackgrounds}
         />
-
+        <GlobalStyle />
     </Styled>
     ); 
 

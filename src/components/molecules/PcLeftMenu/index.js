@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LeftMenu from '../LeftMenu';
 import Styled from './Styled';
+import LeftMenu from '../LeftMenu';
+
+
 
 function PcLeftMenu({isActive, layout, color, sidebarBackgrounds}) {
     let navCss = 'portal';
@@ -15,6 +17,8 @@ function PcLeftMenu({isActive, layout, color, sidebarBackgrounds}) {
             sidebarBackgrounds={sidebarBackgrounds}        
         >
             <LeftMenu color={color} sidebarBackgrounds={sidebarBackgrounds} />
+
+
         </Styled>
 
         
