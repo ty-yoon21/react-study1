@@ -1,4 +1,4 @@
-# UI & React Router
+# UI & React Router & Suspense
 
 참고용 velog
 https://velog.io/@ty-yun21/react2
@@ -73,8 +73,34 @@ const Pages = ({match}) => {
 ```
 
 3. styled-components
+index.js와 동일경로에 Styeld.js 생성 후 import 함
 ```
 import Styled from './Styled';
+```
+
+
+4. <Suspense>
+https://www.daleseo.com/react-suspense/  
+src/utils/lodable.js 
+```
+import React, {lazy, Suspense} from 'react';
+
+const loadable = (importFunc, {fallback = null} = {fallback: null}) => {
+    const LazyComponent = lazy(importFunc);
+
+    return props => (
+        <Suspense fallback={fallback}>
+            <LazyComponent {...props} />
+        </Suspense>
+    );
+};
+
+export default loadable;
+```
+
+실제 쓰임 (./routes/system/index.js)
+```
+const MenuPage = loadable(() => import('./MenuPage'));
 ```
 
 ### Reference
