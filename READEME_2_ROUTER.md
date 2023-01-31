@@ -73,7 +73,6 @@ const Pages = ({match}) => {
 ```
 
 3. styled-components
-index.js와 동일경로에 Styeld.js 생성 후 import 함
 ```
 import Styled from './Styled';
 ```

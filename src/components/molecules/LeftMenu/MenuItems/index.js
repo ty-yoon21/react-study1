@@ -24,12 +24,12 @@ function getItem(label, key, path, icon, children, type, color) {
 
 const items = [
     getItem('시스템관리', 'sub1', '', <span className='icon1'/>, [
-        getItem('시스템 목록', 'sub1-1', 'app/sys/system'),
-        getItem('시스템 메뉴코드', 'sub1-2', 'app/sys/menu'),
-        getItem('시스템 공통코드', 'sub1-3', 'app/sys/code'),
-        getItem('시스템 권한그룹', 'sub1-4', 'app/sys/auth'),
-        getItem('시스템 메뉴별 권한그룹', 'sub1-5', 'app/sys/menuauth'),
-        getItem('시스템 사용자 관리', 'sub1-6', 'app/sys/sysuser'),
+        getItem('시스템 목록', 'sub1-1', '/app/sys/system'),
+        getItem('시스템 메뉴코드', 'sub1-2', '/app/sys/menu'),
+        getItem('시스템 공통코드', 'sub1-3', '/app/sys/code'),
+        getItem('시스템 권한그룹', 'sub1-4', '/app/sys/auth'),
+        getItem('시스템 메뉴별 권한그룹', 'sub1-5', '/app/sys/menuauth'),
+        getItem('시스템 사용자 관리', 'sub1-6', '/app/sys/sysuser'),
     ]),
     getItem('메뉴A', 'sub2', '', <span className='icon1'/>, [
         getItem('1', 'sub2-1', 'app/menua/1'),
@@ -54,7 +54,8 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
 
 
     const setSelectedMenuItem = (e) => {
-        if(!e.item.props.path.incluce('http')){
+        console.log('hihi',e)
+        if(!e.item.props.path.includes('http')){            
             navigate(e.item.props.path);
         }else{
             window.open(e.item.props.path, '_blank', 'noopener,noreferrer');
@@ -62,6 +63,9 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
     }
 
     console.log('memustate >>> ', menuState);
+    console.log('color > ', {color});
+
+
 
     const setToItems = () => {
         MenuList.filter(f => f.lvl===1).map(l => setMenuState((prevState) => [...prevState, getItem(l.name, l.menuCd, l.menuPath,
@@ -132,16 +136,18 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
 
 
     return (
+        <div>
         <Styled 
             color={color}
-            sidebarBackgrounds={sidebarBackgrounds}
+            sidebarbackgrounds={sidebarBackgrounds}
             mode='inline'
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             items={items}
-            onClick={e => setSelectedMenuItem(e.key)}
+            onClick={setSelectedMenuItem}
+            //onClick={e => setSelectedMenuItem(e.key)}
         />
-
+        </div>
     )
 
 };

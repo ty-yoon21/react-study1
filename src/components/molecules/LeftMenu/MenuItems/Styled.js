@@ -4,7 +4,7 @@ import { Menu } from 'antd';
 
 
 const Styled = styled(Menu) (
-    ({color, sidebarBackgrounds}) => `
+    ({color, sidebarbackgrounds}) => `
     background: transparent;
     border: 0;
     
@@ -20,8 +20,9 @@ const Styled = styled(Menu) (
         height: 20px;
     }
     
+
     .ant-menu-submenu {
-        color: ${sidebarBackgrounds === '#f4f4f4' ? '#000' : '#fff'}
+        color: ${sidebarbackgrounds === '#f4f4f4' ? '#000' : '#fff'}
         font-size: 16px;
 
         .ant-menu-submenu-title {
@@ -53,9 +54,21 @@ const Styled = styled(Menu) (
             
         }
 
+
+
+        .ant-menu-light {
+            .ant-menu-inline {
+                backgroud: red;
+            }
+        }
+
         .ant-menu-sub {
-            background-color: #0f151b;
+            background: #0f151b;
             padding: 10px 0;
+
+            .ant-menu-inline {
+                background: black;
+            }
             
             .ant-menu-item {
                 margin: 0;
@@ -68,7 +81,7 @@ const Styled = styled(Menu) (
                 &.ant-menu-item-selected,
                 &.ant-menu-item-active {
                     background-color: transparent;
-                    color: ${color === 'Blue' ? '#399efa' : '#00c8aa'};
+                    color: ${color === 'blue' ? '#399efa' : '#00c8aa'};
                 }
 
                 .ant-menu-title-content {

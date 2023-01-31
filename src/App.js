@@ -3,6 +3,9 @@ import React from "react";
 import './App.css';
 import App from "./container/App";
 
+//Main App
+import RouteService from "./utils/RouteService";
+
 //UI
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
@@ -15,6 +18,9 @@ const MainApp = () => (
     <Router>
       <Routes>
         <Route path="/" element={<App/>} />
+        <Route path="app/*" element={<RouteService />} />
+        {/* <Route path="sys" element={<MenuPage />} /> */}
+         {/* <Route path="/app/sys/menu" element={<MenuPage />} />  */}
       </Routes>
     </Router>
   </MuiPickersUtilsProvider>

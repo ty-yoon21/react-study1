@@ -157,7 +157,7 @@ const Styled = styled.div(
             color: ${sidebarBackgrounds === '#f4f4f4' ? '#000' : '#fff'};            
         }
         .user_info p span {
-            color: ${color === 'Blue' ? '#399EFA' : '#009804'};
+            color: ${color === 'blue' ? '#399EFA' : '#009804'};
         }
         .user_info .login_data {
             background: ${
