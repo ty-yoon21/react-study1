@@ -18,7 +18,8 @@ const MainApp = () => (
     <Router>
       <Routes>
         <Route path="/" element={<App/>} />
-        <Route path="app/*" element={<RouteService />} />
+        <Route path="app/*" element={<App/>} />
+        {/* <Route path="app/*" element={<RouteService />} /> */}
         {/* <Route path="sys" element={<MenuPage />} /> */}
          {/* <Route path="/app/sys/menu" element={<MenuPage />} />  */}
       </Routes>

@@ -90,6 +90,9 @@ const App = ({match, history}) => {
                         <title>SK ecoplant</title>
                         <meta name='description' content='React Study' />
                     </Helmet>
+                    <Routes>
+                        <Route path="app2/*" element={<RouteService/>} />
+                    </Routes>
 
 
                     {/* <Routes>

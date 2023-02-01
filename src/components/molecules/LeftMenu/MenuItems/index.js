@@ -25,7 +25,7 @@ function getItem(label, key, path, icon, children, type, color) {
 const items = [
     getItem('시스템관리', 'sub1', '', <span className='icon1'/>, [
         getItem('시스템 목록', 'sub1-1', '/app/sys/system'),
-        getItem('시스템 메뉴코드', 'sub1-2', '/app/sys/menu'),
+        getItem('시스템 메뉴코드', 'sub1-2', '/app/app2/sys/menu'),
         getItem('시스템 공통코드', 'sub1-3', '/app/sys/code'),
         getItem('시스템 권한그룹', 'sub1-4', '/app/sys/auth'),
         getItem('시스템 메뉴별 권한그룹', 'sub1-5', '/app/sys/menuauth'),
