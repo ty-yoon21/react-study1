@@ -38,6 +38,7 @@ const defaultConfig = {
 };
 
 const App = ({match, history}) => {
+
     const [ isActive, setActive] = useState(false);
 
     const [stateConfig, setStateConfig] = useState(
@@ -51,6 +52,16 @@ const App = ({match, history}) => {
     }, [stateConfig]
     );
 
+    const onClickMenu = () => {
+        setActive(!isActive);
+    }
+
+    console.log('################## App.js isActive : ', isActive);
+
+
+
+
+
 //    console.log('############ App match.url > ', match.url)
 
     console.log('############## container/App.js');
@@ -60,7 +71,7 @@ const App = ({match, history}) => {
             isActive={isActive}
             layout={stateConfig.layout}
             color={stateConfig.color}
-            sidebarBackgrounds={defaultConfig.sidebarBackgrounds}
+            sidebarBackgrounds={stateConfig.sidebarBackgrounds}
         />
         <GlobalStyle />
 

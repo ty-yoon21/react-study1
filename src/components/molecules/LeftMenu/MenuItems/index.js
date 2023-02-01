@@ -54,7 +54,7 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
 
 
     const setSelectedMenuItem = (e) => {
-        console.log('hihi',e)
+        console.log('MenuItems e : ',e)
         if(!e.item.props.path.includes('http')){            
             navigate(e.item.props.path);
         }else{
