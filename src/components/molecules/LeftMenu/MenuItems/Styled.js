@@ -81,7 +81,7 @@ const Styled = styled(Menu) (
                 &.ant-menu-item-selected,
                 &.ant-menu-item-active {
                     background-color: transparent;
-                    color: ${color === 'blue' ? '#399efa' : '#00c8aa'};
+                    color: ${color === 'Blue' ? '#399efa' : '#00c8aa'};
                 }
 
                 .ant-menu-title-content {

@@ -9,7 +9,7 @@ import MenuItems from './MenuItems';
 export default function LeftMenu({color, sidebarBackgrounds}) {
     //const {user} = JSON.parse(window.localStorage.getItem("User"))
     let navCss = 'portal';
-
+    console.log('components/molecules/LeftMenu sidebarbackgrouds : ',sidebarBackgrounds);
     return (
         <Styled
             className={navCss}
