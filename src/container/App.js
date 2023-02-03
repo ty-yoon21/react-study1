@@ -26,14 +26,14 @@ import Styled from "./Styeld";
 import PcLeftMenu from "../components/molecules/PcLeftMenu";
 import GlobalStyle from '../common/global-styles';
 import useWindowDimensions from '../components/CustomHooks/useWindowDimensions';
-
+import Header from '../components/molecules/Header';
 
 //Main App
 import RouteService from "../utils/RouteService";
 import MenuPage from "../routes/system/MenuPage";
 
 const defaultConfig = {
-    layoutMode: 'light',
+    layoutmode: 'light',
     layout: 'left',
     color: 'Blue',
     sidebarBackgrounds: '#333',
@@ -74,17 +74,32 @@ const App = ({match, history}) => {
 
     return (
     <ThemeProvider theme={theme}>
-        <Styled side = {stateConfig.layout} layoutMode={stateConfig.layoutMode}>
-            <PcLeftMenu 
+        <Styled side = {defaultConfig.layout} layoutmode={defaultConfig.layoutmode}>
+            {width > 1080 ? (
+                <PcLeftMenu 
                 isActive={isActive}
-                layout={stateConfig.layout}
+                layout={defaultConfig.layout}
                 color={defaultConfig.color}
                 sidebarBackgrounds={defaultConfig.sidebarBackgrounds}
-            />
-            <GlobalStyle />
+                />
+            ) : (
+                //mobileLeftMenu 추가예정
+                <PcLeftMenu 
+                isActive={isActive}
+                layout={defaultConfig.layout}
+                color={defaultConfig.color}
+                sidebarBackgrounds={defaultConfig.sidebarBackgrounds}
+                />
+            )}
 
-            <div className={`container ${isActive && "on"}`}>
+            
 
+            <div className={`container ${isActive && 'on'}`}>
+                <Header className='main-header'
+                    size={width}
+                    layout={defaultConfig.layout}
+                    layoutmode={defaultConfig.layoutmode}
+                />
                 <div className="site-contents">
                     <Helmet>
                         <title>SK ecoplant</title>
@@ -93,6 +108,7 @@ const App = ({match, history}) => {
                     <Routes>
                         <Route path="app2/*" element={<RouteService/>} />
                     </Routes>
+                    <GlobalStyle />
 
 
                     {/* <Routes>

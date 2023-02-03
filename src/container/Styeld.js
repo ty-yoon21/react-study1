@@ -3,17 +3,51 @@ import styled from 'styled-components';
 
 
 const Styled = styled.div(
-    ({color, layoutMode}) => `
+    ({side, layoutmode}) => `
 
     width: 100%;
-    min-height; 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: 'noto-sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #333;
-    background-color: ${layoutMode === 'light' ? '#f2f7f8' : '#222'};
+    background-color: ${layoutmode === 'light' ? '#f2f7f8' : '#222'};
     letter-spacing: -0.3px;
+
+    .container {
+        width: calc(100% - 240px);
+        ${side === 'left' ? 'margin-left' : 'margin-right'} : 240px;
+        height: 3000px;
+        transition: all 0.3s;
+
+        .site-contents {
+            padding: 24px 40px;
+            width: 100%;
+            height: 100%
+        }
+
+        &.on {
+                ${side === 'left' ? 'margin-left' : 'margin-right'}: 60px;
+            width: calc(100% - 60px);
+        }
+
+        .main-header {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            background-color: ${layoutmode === 'Light' ? '#fff' : '#fff'};
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+    }
+
+
+
 
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -75,35 +109,7 @@ const Styled = styled.div(
 
 }
 
-    @media (max-width: 1680px) {
-        .main_wrap {
-            .search-area {
-                align-items: flex-end;
 
-                &.responsive {
-                    ul {
-                        flex-direction: column;
-                        li {
-                            & + li {
-                                margin-left: 0px;
-                                margin-top: 10px;
-                            }
-                            label {
-                                min-width: 65px;
-                                text-align: left;
-                                display: table-cell;
-                                vertical-align: middle;
-                                padding-right: 10px;/
-                            }
-                        }
-                    }
-                }
-                &.row-flex-end {
-                    align-items: flex-end;
-                }
-            }
-        }
-    }
     `,
 
 );

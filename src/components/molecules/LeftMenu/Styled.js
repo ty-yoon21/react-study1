@@ -6,7 +6,7 @@ import LogoDark from '../../../common/images/portal_logo_dark.png';
 const Styled = styled.div(
     ({color, sidebarBackgrounds}) => `
    
-    
+    height: 100%;
 
     h1 {
         height: 60px;
@@ -147,7 +147,7 @@ const Styled = styled.div(
 
     &.portal {
         background: ${sidebarBackgrounds};
-
+        height: 100%;
 
         .sidebar_open {
             
