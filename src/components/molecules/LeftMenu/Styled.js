@@ -68,7 +68,7 @@ const Styled = styled.div(
                     display: inline-block;
                     max-width: 210px;
                     overflow: hidden;
-                    text-overflow: eclipsis;
+                    text-overflow: ellipsis;
                     white-space: nowrap;
                     vertical-align: bottom;
                 }

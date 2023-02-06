@@ -8,7 +8,7 @@ const Styled = styled.nav(
     ${side}  : 0;
     width: 240px;
     height: 100%;
-    overfow: hidden;
+    overflow: hidden;
     z-index: 99;
     transition: all 0.3s;
     background: ${

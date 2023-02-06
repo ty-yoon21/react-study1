@@ -5,25 +5,23 @@ import styled from 'styled-components';
 const Styled = styled.div(
     ({side, layoutmode}) => `
 
-    width: 100%;
     min-height: 100vh;
     margin: 0;
     font-family: 'noto-sans', sans-serif;
-    font-size: 16px;
     font-weight: 400;
     color: #333;
     background-color: ${layoutmode === 'light' ? '#f2f7f8' : '#222'};
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
 
     .container {
         width: calc(100% - 240px);
         ${side === 'left' ? 'margin-left' : 'margin-right'} : 240px;
-        height: 3000px;
+        height: 100%;
         transition: all 0.3s;
 
         .site-contents {
             padding: 24px 40px;
-            width: 100%;
+            
             height: 100%
         }
 
@@ -34,7 +32,7 @@ const Styled = styled.div(
 
         .main-header {
             position: relative;
-            width: 100%;
+            
             height: 80px;
             background-color: ${layoutmode === 'Light' ? '#fff' : '#fff'};
             padding: 0 40px;
@@ -49,10 +47,9 @@ const Styled = styled.div(
 
 
 
-    border: 1px solid #ddd;
+    
     border-radius: 4px;
-    margin-bottom: 30px;
-    boxshadow: rgb(0 0 0 / 10%) 1.95px 1.95px 2.6px;u
+    box-shadow: rgb(0 0 0 / 10%) 1.95px 1.95px 2.6px;u
 
 }
 /* main content */
@@ -72,7 +69,7 @@ const Styled = styled.div(
         margin-top: 10px;
 
         li {
-            margin-botton: 0;
+            margin-bottom: 0;
             &:nth-child(2n) {
                 margin: 0 5px;
             }
@@ -88,22 +85,49 @@ const Styled = styled.div(
 
 .main_wrap {
 
-    width: 100%;
+
+
     height: auto;
-    backgroud: #fff;
+    background: #fff;
     border-radius: 4px;
     padding: 20px;
     box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.2) 0px 1px 3px -1px;
+
+    font: inherit;
+    margin: 0;
+    border 0;
 
     .search-area {
         padding: 15px 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        backgroud: #f5f6f7;
+        background: #f5f6f7;
         border-radius: 4px;
-        margin-botton: 10px;
+        margin-bottom: 10px;
+
+        label {
+            font-size: 14px;
+            margin-right: 10px;
+            white-space: nowrap;
+            &:after { 
+                display: none;
+            }
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+
+            li {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+
+            }
+        }
     }
 
 

@@ -15,8 +15,12 @@ import { InputDate, InputTime, ComboBox, AutoComplete, InputColor, InputNumber }
 // UI Compnent
 import MainTitle from '../../../components/MainTitle';
 import SearchForm from '../../../components/toolbar/SearchForm';
+import GridButtonBar from '../../../components/toolbar/GridButtonBar';
 
 const MenuPage = (props) => {
+
+    const theGrid = useRef();
+
     return (
         <div id='main'>
                 <div className='main_title'>
@@ -28,11 +32,15 @@ const MenuPage = (props) => {
                             <li className='search-area-condition item1'>
                                 <SearchForm />
                             </li>
-                            {/* <li lassName='search-area-condition item2'></li> */}
-                        </ul>
-
-                        
+                            <li className='search-area-condition item2'>
+                                <GridButtonBar />
+                            </li>
+                        </ul>                        
                     </div>
+
+
+
+
                 </div>
         </div>
     );
