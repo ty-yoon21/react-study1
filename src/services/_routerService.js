@@ -7,5 +7,4 @@ export default [
         path: 'sys',
         element: System
     }
-
 ]

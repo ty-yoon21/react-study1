@@ -2,11 +2,11 @@
  * App Routes
  */
 
- import React, { Component } from 'react';
+ import React from 'react';
  import {Routes, Route} from 'react-router-dom';
  
  import routerService from '../services/_routerService';
- import Pages from '../routes/system';
+
  
  const RouterService = () => {
     //const { match } = this.props;
@@ -14,9 +14,11 @@
     return (
             <div>
                 <Routes>
-                    {routerService && routerService.map((route, key) => 
+                    {routerService && routerService.map((route, key) => (
+                        
                         <Route key={key} path="sys/*" element={<route.element />} />
-                    )}
+
+                    ))}
 
 
 
