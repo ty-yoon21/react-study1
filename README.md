@@ -55,7 +55,7 @@ react-study
 │     ├─ RouteService.js
 │     ├─ loadable.js
 │     └─ tree.js
-│  ├─ store                     [M-0] Redus Saga의 Store, Middleware Create 작업
+│  ├─ store                     [M-0] Redux Saga의 Store, Middleware Create 작업
 │  ├─ actions
 │  │  ├─ type.js                [M-1] Action Type을 정의한다
 │  │  ├─ ***Actions.js          [M-2] Action 파일을 추가한다
@@ -75,8 +75,8 @@ react-study
 ```
 
 ## Summary
-1. Router
-```javascript
+### 1. Router
+
 1) App.js (### Entry1 ###)  
 : 여기에 Router (BrowseRouter), Routes, Route설정  
 : 라우터 최상단  
@@ -85,14 +85,16 @@ react-study
 : 실질적인 메인 페이지 (header, menuleft, main으로 구성)  
 : 여기에도 라우터가 있게되며 메뉴 클릭시 여기의 main메뉴에 뜨도록 컴포넌트를 배치함  
 import RouteService from "../utils/RouteService";
+```javascript
 <div>
     <Routes>
         <Route path="app2/*" element={<RouteService/>} />
     </Routes>
 </div>
-
-3) ./utils/RouteService.js
-// .map 함수를 이용해서 리스트 형식으로 뿌렸기 때문에 key를 넣어줘야 함
+```
+3) ./utils/RouteService.js  
+: .map 함수를 이용해서 리스트 형식으로 뿌렸기 때문에 key를 넣어줘야 함  
+```javascript
     return (
             <div>
                 <Routes>
@@ -104,9 +106,10 @@ import RouteService from "../utils/RouteService";
                 </Routes>
             </div>
     );
-
-4) ./routes/system/index.js
-//마지막 최종 route (system 대메뉴의 하위메뉴로 가기 위한...)
+```
+4) ./routes/system/index.js  
+: 마지막 최종 route (system 대메뉴의 하위메뉴로 가기 위한...)  
+```javascript
     return (
         <div className='content-wrapper'>
             <Routes>
@@ -116,12 +119,12 @@ import RouteService from "../utils/RouteService";
     );
 ```
 
-2. Redux-Saga
-```javascript
-1) store 생성 (reducer create 및 saga apply) 및 App.js에 <Provider>로 적용
-2) 메뉴 화면에서 dispatch로 Action 요청
-3) Action 실행함수 발동 (./actions/***Actions.js)
-4) reducer로 가기전에 saga에서 중간 처리
-: 보통 RootSaga --> 해당 제너레이터 함수 (사가) --> 여기서 자바스크립트 함수 사용 (보통 API Call) --> Success시 Success 관련 Action 발생  
---> Reducer에서 호출 메뉴에 새로운 상태 반환 (데이터 반환)  
-```
+### 2. Redux-Saga
+1) store 생성 (reducer create 및 saga apply) 및 App.js에 <Provider>로 적용  
+2) 메뉴 화면에서 dispatch로 Action 요청  
+3) Action 실행함수 발동 (./actions/***Actions.js)  
+4) reducer로 가기전에 saga에서 중간 처리  
+: 보통 RootSaga --> 해당 제너레이터 함수 (사가)   
+--> 여기서 자바스크립트 함수 사용 (보통 API Call)  
+--> Success시 Success 관련 Action 발생   
+--> Reducer에서 호출 메뉴에 새로운 상태 반환 (데이터 반환)   

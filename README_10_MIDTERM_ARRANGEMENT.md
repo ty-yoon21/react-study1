@@ -1,10 +1,10 @@
-# 10. Midterm Arrangement (중간정리))
+# 10. Midterm Arrangement (중간정리)
 
 참고용 velog
 https://velog.io/@ty-yun21/react10
 참고용 github
 https://github.com/ty-yoon21/react-study1  
-commit message : 10. Mitrem Arrangement
+commit message : (2023.02.08) 10. Mitrem Arrangement
 
 ## 목표
 1. Styled Compnents
