@@ -1,6 +1,5 @@
 import React, {useRef} from 'react';
-
-
+import { useSelector, useDispatch } from 'react-redux';
 
 // Wijmo
 import * as wjFlexGrid from '@grapecity/wijmo.react.grid';
@@ -16,6 +15,12 @@ import { InputDate, InputTime, ComboBox, AutoComplete, InputColor, InputNumber }
 import MainTitle from '../../../components/MainTitle';
 import SearchForm from '../../../components/toolbar/SearchForm';
 import GridButtonBar from '../../../components/toolbar/GridButtonBar';
+//import { getTsysMenuList } from '../../../sagas/TsysMenuSaga';
+
+import {
+    getTsysMenuList,
+ } from '../../../actions';
+
 
 const MenuPage = (props) => {
 

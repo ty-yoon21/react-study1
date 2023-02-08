@@ -59,6 +59,15 @@ const config = {
             //util: require.resolve("util/"),
             //"crypto": require.resolve("crypto-browserify"),
             //"stream": require.resolve("stream-browserify")
+            // util: require.resolve("util/"),
+            util: false,
+            url: require.resolve("url"),
+            fs: false,
+            crypto: require.resolve("crypto-browserify"),
+            http: require.resolve("stream-http"),
+            https: require.resolve("https-browserify"),
+            os: require.resolve("os-browserify/browser"),
+            stream: require.resolve("stream-browserify"),
         },
 
         //modules: ['node_modules', 'app'],
@@ -116,6 +125,18 @@ const config = {
  
 
 module.exports = () => {
+    config.resolve.fallback = {
+        //util: require.resolve("util/"),
+        util: false,
+        url: require.resolve("url"),
+        fs: false,
+        crypto: require.resolve("crypto-browserify"),
+        http: require.resolve("stream-http"),
+        https: require.resolve("https-browserify"),
+        os: require.resolve("os-browserify/browser"),
+        stream: require.resolve("stream-browserify"),
+     };
+
 
     if (isProduction) {
         config.mode = "production";
