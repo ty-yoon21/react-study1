@@ -17,7 +17,7 @@ commit message : 4. Wijmo
 npm i @grapecity/wijmo.react.all
 https://demo.grapecity.co.kr/wijmo/docs/GettingStarted/QuickStart/QuickStart-React  
 
-```
+```javascript
 import * as wjFlexGrid from '@grapecity/wijmo.react.grid';
 import * as wjGrid from '@grapecity/wijmo.grid';
 import * as wjcCore from '@grapecity/wijmo';

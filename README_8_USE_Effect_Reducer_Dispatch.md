@@ -15,7 +15,7 @@ commit message :
 1.1 개요  
 : useEffect를 활용해서 마운트 (처음 나타났을 때), 언마운트, 업데이트 (특정 props가 바귈 때) 될 때  
 특정 작업을 처리하는 방법  
-```
+```javascript
 useEffect( () => {
     console.log('컴포넌트가 화면에 나타남');
     return () => {
@@ -33,7 +33,7 @@ deps를 비우면 컴포넌트가 처음 나타날 때만 useEffect에 등록한
 
 1.2 deps에 특정 값 넣기  
 : deps에 특정 값을 넣으면 컴포넌트 마운트, 지정한 값 바뀔 때, 언마운트, 값이 바뀌기 직전 호출  
-```
+```javascript
 useEffect( () => {
     console.log('user 값 설정됨');
     console.log(user);
@@ -52,7 +52,7 @@ useEffect( () => {
 컴포넌트의 상태 업데이트 로직을 컴포넌트에서 분리 가능  
 상태 업데이트 로직을 컴포넌트 바깥에 작성 할 수도 있고, 다른 파일에 작성 후 불러와서 사용도 가능  
 : reducer는 현재 상태와 액션 객체를 파라미터로 받아와서 새로운 상태를 반환해주는 함수
-```
+```javascript
 function reducer(state, action) {
     //새로운 상태를 만든튼 로직
     // const nextState = ...
@@ -63,7 +63,7 @@ function reducer(state, action) {
 ```
 
 : useReducer의 사용법
-```
+```javascript
     const [state, dispatch] = useReducer(reducer, initialState);
     // state : 우리가 앖으로 컴포넌트에서 사용할 수 있는 상태를 가르킴
     // dispatch : 액션을 발생시키는 함수

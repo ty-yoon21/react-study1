@@ -5,6 +5,7 @@ https://velog.io/@ty-yun21/react1
 참고용 github
 https://github.com/ty-yoon21/react-study1
 
+commit message : 
 ## 목표
 1. cra를 통해 react app 생성
 2. package.json을 통해 의존 라이브러리 설정
@@ -52,16 +53,16 @@ import ReactDOM from 'react-dom';
 
 4. npm devDependencies  
 package.json에 devDependencies 항목에 lib 추가하기 위해서는 아래 명령어 필요
-```
-npm install <package-name> --save-dev
+```bash
+$ npm install <package-name> --save-dev
 ```
 
 5. yarn 설치  
 나 같은 경우 yarn add하는 경우 package.json에 추가가 되지 않아서 npm install 을 통해서 lib 추가 하였음...
-```
-Nom install -g yarn
-Yarn install
-Yarn build
+```bash
+$ Npm install -g yarn
+$ Yarn install
+$ Yarn build
 ```
 
 6. react + webpack + babel로 개발 환경 구축하기 (javascript)  

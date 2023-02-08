@@ -23,7 +23,7 @@ https://sennieworld.tistory.com/30
 (Ex. switch --> routes, component --> element, withRouter 사라짐, match.url 못씀)  
 
 2.1 components/molecules/LeftMenu/MenuItems
-```
+```javascript
     const setSelectedMenuItem = (e) => {   
         if(!e.item.props.path.includes('http')){            
             navigate(e.item.props.path);
@@ -35,7 +35,7 @@ https://sennieworld.tistory.com/30
 
 2.2 src/App.js  
 각 메뉴의 접근은 app/*/* (ex. app/sys/menu) 식으로 함
-```
+```javascript
     <Router>
       <Routes>
         <Route path="/" element={<App/>} />
@@ -46,7 +46,7 @@ https://sennieworld.tistory.com/30
 
 2.3 ./utils/RouteService
 _routerService에 대메뉴 mapdmf 해둠
-```
+```javascript
 import routerService from '../services/_routerService';
                 <Routes>
                     {routerService && routerService.map((route, key) => 
@@ -57,7 +57,7 @@ import routerService from '../services/_routerService';
 
 2.4 ./routes/system
 
-```
+```javascript
 import loadable from '../../utils/loadable';
 
 const MenuPage = loadable(() => import('./MenuPage'));
@@ -74,7 +74,7 @@ const Pages = ({match}) => {
 
 3. styled-components
 index.js와 동일경로에 Styeld.js 생성 후 import 함
-```
+```javascript
 import Styled from './Styled';
 ```
 
@@ -82,7 +82,7 @@ import Styled from './Styled';
 4. <Suspense>
 https://www.daleseo.com/react-suspense/  
 src/utils/lodable.js 
-```
+```javascript
 import React, {lazy, Suspense} from 'react';
 
 const loadable = (importFunc, {fallback = null} = {fallback: null}) => {
@@ -99,7 +99,7 @@ export default loadable;
 ```
 
 실제 쓰임 (./routes/system/index.js)
-```
+```javascript
 const MenuPage = loadable(() => import('./MenuPage'));
 ```
 

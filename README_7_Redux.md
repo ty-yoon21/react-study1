@@ -46,7 +46,7 @@ connect함수와 useSelector함수에는 내부적으로 최적화가 잘 이루
 ```
 
 2.2 액션 생성함수 (Action Creator)  
-```
+```javascript
 // 액션 생성함수는, 액션을 만드는 함수입니다. 단순히 파라미터를 받아와서 액션 객체 형태로 만들어주죠.
 
 export function addTodo(data) {
@@ -63,7 +63,7 @@ export const changeInput = text => ({
 });
 
 2.3 Reducer
-```
+```javascript
 // 리듀서는 변화를 일으키는 함수입니다. 리듀서는 두가지의 파라미터를 받아옵니다.
 // 리듀서는, 현재의 상태와, 전달 받은 액션을 참고하여 새로운 상태를 만들어서 반환합니다. 이 리듀서는 useReducer 를 사용할때 작성하는 리듀서와 똑같은 형태를 가지고 있습니다.
 // 만약 카운터를 위한 리듀서를 작성한다면 다음과 같이 작성할 수 있습니다.
@@ -92,7 +92,7 @@ const TsysMenuReducer = (state = INIT_STATE, action) => {
 : 디스패치는 스토어의 내장함수 중 하나입니다. 디스패치는 액션을 발생 시키는 것 이라고 이해하시면 됩니다.  
 dispatch 라는 함수에는 액션을 파라미터로 전달합니다.. dispatch(action) 이런식으로 말이죠.  
 그렇게 호출을 하면, 스토어는 리듀서 함수를 실행시켜서 해당 액션을 처리하는 로직이 있다면 액션을 참고하여 새로운 상태를 만들어줍니다.  
-```
+```javascript
 import { useDispatch, useSelector } form 'react-redus';
 
   // useDispatch 는 리덕스 스토어의 dispatch 를 함수에서 사용 할 수 있게 해주는 Hook 입니다.
@@ -110,7 +110,7 @@ subscribe 함수에 특정 함수를 전달해주면, 액션이 디스패치 되
 그 대신에 react-redux 라는 라이브러리에서 제공하는 connect 함수 또는 useSelector Hook 을 사용하여 리덕스 스토어의 상태에 구독합니다.  
 
 2.7 useSelector
-```
+```javascript
   // useSelector는 리덕스 스토어의 상태를 조회하는 Hook입니다.
   // state의 값은 store.getState() 함수를 호출했을 때 나타나는 결과물과 동일합니다.
   const { number, diff } = useSelector(state => ({

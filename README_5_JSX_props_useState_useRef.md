@@ -27,7 +27,7 @@ fragment는 브라우저상 별도의 엘리먼트로 나타나지 않음
 
 
 2. props를 통해 컴포넌트에 값 전달
-```
+```javascript
 return (
     <Hello name='react' />
 );
@@ -38,7 +38,7 @@ const Hello = (props) => {
 ```
 2.2 여러개의 props  
 2.3 defaultProps로 기본값 설정
-```
+```javascript
 Hello.defaultProps = {
     name: 'noname'
 }
@@ -52,11 +52,11 @@ Hello.defaultProps = {
 
 3. useState를 통해 컴포넌트에서 바뀌는 값 관리
 3.1 동적인 값 넣기  
-```
+```javascript
 const [number, setNumber] = useState(0);
 ```
 3.2 input 상태관리  
-```
+```javascript
 const [text, setText] = useState('');
 
 const onChange = (e) => {
@@ -67,7 +67,7 @@ const onChange = (e) => {
 // DOM 의 value : e.target.value
 ```
 3.2 여러개 input 관리
-```
+```javascript
 const [inputs, setInputs] = useState( {
     name: '',
     nickname: ''
@@ -88,7 +88,7 @@ const onChange = (e) => {
 4. useRef로 특정 DOM 선택하기
 : 이럴 때 리액트에서는 ref 라는 것을 사용함
 : ref를 사용하기 위해서는 useRef 라는 Hook 함수를 사용...
-```
+```javascript
 const nameInput = useRef();
 
 const {name, nickname} = inuts;
@@ -114,7 +114,7 @@ return (
 
 
 5. 배열 렌더링
-```
+```javascript
 const users = [
     {
         id: 1,
@@ -145,7 +145,7 @@ return (
 --> 외부 라이브러리를 사용하여 생성된 인스턴스
 --> scroll위치  
 
-```
+```javascript
 const users = [
     {
         id: 1,

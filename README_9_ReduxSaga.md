@@ -1,10 +1,10 @@
 # 7. ReduxSaga
 
-참고용 velog
-https://velog.io/@ty-yun21/react9
-참고용 github
-https://github.com/ty-yoon21/react-study1  
-commit message : 
+참고용 velog  
+https://velog.io/@ty-yun21/react9  
+참고용 github  
+https://github.com/ty-yoon21/react-study1    
+commit message : 2023/02/08 redux, redux-saga 
 
 ## 목표
 1. redux-saga
@@ -14,23 +14,30 @@ commit message :
 1.1 redux-saga  
 https://react.vlpt.us/redux-middleware/10-redux-saga.html  
 ```
-redux-thunk의 경우엔 함수를 디스패치 할 수 있게 해주는 미들웨어였지요? redux-saga의 경우엔, 액션을 모니터링하고 있다가, 특정 액션이 발생하면 이에 따라 특정 작업을 하는 방식으로 사용합니다. 여기서 특정 작업이란, 특장 자바스크립트를 실행하는 것 일수도 있고, 다른 액션을 디스패치 하는 것 일수도 있고, 현재 상태를 불러오는 것 일수도 있습니다.
-
-redux-saga는 redux-thunk로 못하는 다양한 작업들을 처리 할 수 있습니다. 예를 들자면..
-
-비동기 작업을 할 때 기존 요청을 취소 처리 할 수 있습니다
-특정 액션이 발생했을 때 이에 따라 다른 액션이 디스패치되게끔 하거나, 자바스크립트 코드를 실행 할 수 있습니다.
-웹소켓을 사용하는 경우 Channel 이라는 기능을 사용하여 더욱 효율적으로 코드를 관리 할 수 있습니다 (참고)
-API 요청이 실패했을 때 재요청하는 작업을 할 수 있습니다.
+redux-thunk의 경우엔 함수를 디스패치 할 수 있게 해주는 미들웨어였지요?  
+redux-saga의 경우엔, 액션을 모니터링하고 있다가, 
+특정 액션이 발생하면 이에 따라 특정 작업을 하는 방식으로 사용합니다.  
+여기서 특정 작업이란, 특장 자바스크립트를 실행하는 것 일수도 있고,  
+다른 액션을 디스패치 하는 것 일수도 있고, 현재 상태를 불러오는 것 일수도 있습니다.  
+  
+redux-saga는 redux-thunk로 못하는 다양한 작업들을 처리 할 수 있습니다. 예를 들자면..  
+  
+비동기 작업을 할 때 기존 요청을 취소 처리 할 수 있습니다  
+특정 액션이 발생했을 때 이에 따라 다른 액션이 디스패치되게끔 하거나, 자바스크립트 코드를 실행 할 수 있습니다.  
+웹소켓을 사용하는 경우 Channel 이라는 기능을 사용하여 더욱 효율적으로 코드를 관리 할 수 있습니다 (참고)  
+API 요청이 실패했을 때 재요청하는 작업을 할 수 있습니다.  
 이 외에도 다양한 까다로운 비동기 작업들을 redux-saga를 사용하여 처리 할 수 있답니다.
 
-redux-saga는 다양한 상황에 쓸 수 있는 만큼, 제공되는 기능도 많고, 사용방법도 진입장벽이 꽤나 큽니다. 자바스크립트 초심자라면 생소할만한 Generator 문법을 사용하는데요, 이 문법을 이해하지 못하면 redux-saga를 배우는 것이 매우 어려우니, 이 문법부터 작동방식을 이해해보도록 하겠습니다.
+redux-saga는 다양한 상황에 쓸 수 있는 만큼, 제공되는 기능도 많고, 사용방법도 진입장벽이 꽤나 큽니다. 
+자바스크립트 초심자라면 생소할만한 Generator 문법을 사용하는데요, 
+이 문법을 이해하지 못하면 redux-saga를 배우는 것이 매우 어려우니, 
+이 문법부터 작동방식을 이해해보도록 하겠습니다.
 ```
 
 
 1.2 Generator Function & Action Mornitoring  
-: edux-saga 에서는 제너레이터 함수를 "사가" 라고 부릅니다.  
-```
+: redux-saga 에서는 제너레이터 함수를 "saga" 라고 부릅니다.  
+```javascript
 /**
  * Get List, save, import, send
  */
@@ -65,7 +72,7 @@ function* getMenusListFromServer() {
 
 2. 오류
 store/index.js에서 아래 내용 추가시  오류 발생  
-```
+```javascript
 import sagaMonitor from '@redux-saga/simple-saga-monitor';
 const sagaMiddleware = createSagaMiddleware( {sagaMonitor});
 ```
@@ -85,7 +92,7 @@ https://mr-son.tistory.com/153 를 보고 참고하려 했으나
 
 3. 세팅  
 3.1 App.js  
-```
+```javascript
 import { Provider } from 'react-redux';
 import RootSaga from './sagas';
 import { configureStore } from './store';
@@ -109,7 +116,7 @@ const MainApp = () => (
 
 
 3.2 store/index.js  
-```
+```javascript
 /**
  * Redux Store
  */
@@ -151,7 +158,7 @@ export function configureStore(initialState) {
 1.3 화면에서부터 타고 올라고보자  
 1.3.1 routes/system/MenuPage/index.js
 
-```
+```javascript
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -163,7 +170,7 @@ dispatch(getTsysMenuList({}));
 
 1.3.2 [M-1] action/types.js  
 : Action Type을 정의한다  
-```
+```javascript
 // TSYS_MENU
 export const TSYS_MENU_ON_GET_LIST = 'TSYS_MENU_ON_GET_LIST';
 export const TSYS_MENU_ON_GET_LIST_SUCCESS = 'TSYS_MENU_ON_GET_LIST_SUCCESS'; 
@@ -172,7 +179,7 @@ export const TSYS_MENU_ON_GET_LIST_FAILURE = 'TSYS_MENU_ON_GET_LIST_FAILURE';
 
 1.3.3 [M-2] action/***Actions.js  
 : Action 파일을 추가한다
-```
+```javascript
 /**
  * Todo App Actions
  */
@@ -200,7 +207,7 @@ export const getTsysMenusListFailure = (error) => ({
 
 1.3.3 [M-3] action/index.js  
 : Action 파일 export를 추가한다
-```
+```javascript
 /**
  * Redux Actions
  */
@@ -211,7 +218,7 @@ export * from './TsysMenuActions';
 
 1.3.4 [M-4] reducers/***Reducers.js
 : Reducer 파일을 추가한다 
-```
+```javascript
 import { toast, ToastContainer } from 'react-toastify';
 // toast 알람
 // https://defineall.tistory.com/1021
@@ -251,7 +258,7 @@ export default TsysMenuReducer;
 
 1.3.2 [M-5] reducers/index.js  
 : Reducer import / export 추가한다. 
-```
+```javascript
 /**
  * App Reducers
  */
@@ -269,7 +276,7 @@ export default reducers;
 
 1.3.3 [M-6] sagas/***Sagas.js  
 : Saga 파일을 추가한다 
-```
+```javascript
 /**
  * Todo Sagas
  */
@@ -367,7 +374,7 @@ export default function* rootSaga() {
 
 1.3.3 [M-7] sagas/index.js  
 : Saga import / export 추가한다.
-```
+```javascript
 /**
  * Root Sagas
  */

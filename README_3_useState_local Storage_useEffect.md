@@ -20,7 +20,7 @@ commit message : 2. UI & Router *
 
 1.1 ./container/App.js
 
-```
+```javascript
     const [ isActive, setActive] = useState(false);
 
     const onClickMenu = () => {
@@ -39,7 +39,7 @@ https://www.daleseo.com/js-web-storage/
 
 
 2.1 App.js  
-```
+```javascript
     const [stateConfig, setStateConfig] = useState(
         JSON.parse(window.localStorage.getItem('portal-config')) === null
         ? defaultConfig
