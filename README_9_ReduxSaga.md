@@ -1,4 +1,4 @@
-# 7. ReduxSaga
+# 9. ReduxSaga
 
 참고용 velog  
 https://velog.io/@ty-yun21/react9  

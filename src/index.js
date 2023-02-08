@@ -1,6 +1,6 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
-import ReactDOM from 'react-dom/client'; //--> react 18 ver
+//import ReactDOM from 'react-dom';       //--> react 18 ver.
+import ReactDOM from 'react-dom/client';  //--> react 18 ver.
 import './index.css';
 //import MainApp from './App';
 //import MainApp from './App';

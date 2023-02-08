@@ -23,7 +23,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## Settings
 ### 정리
 1. npx create-react-app 을 통해서 프로젝트 생성
-: 현재 react 18로 pjt가 생성되기 때문에 나는 17로 변경함
+: 현재 react 18로 pjt가 생성되기 때문에 나는 17로 변경함  
+--> 다시 그냥 18로 했다  (material ui는 npm install --force로 해결했었던걸로 기억)
 2. npm, yarn 사용법에 대해 알아두자
 3. package.json 에 대해 알아두자 
 4. webpack, babel을 이용해서 dev환경 실행  
@@ -41,6 +42,7 @@ https://hyunjun19.github.io/2018/03/23/package-lock-why-need/
 
 3. create-react-app 18 —> 17  
 나의 경우 material-ui등 react 18에서 사용하지 못하는 lib를 사용하였기 때문에 17로 version 변경함  
+--> 다시 그냥 18로 함...  
 https://trend21c.tistory.com/2250  
 1) package.json --> React, react-dom 17.0.0 으로 변경 이후  
 `npm i`

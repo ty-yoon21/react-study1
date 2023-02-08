@@ -106,7 +106,7 @@ const App = ({match, history}) => {
                         <meta name='description' content='React Study' />
                     </Helmet>
                     <Routes>
-                        <Route path="app2/*" element={<RouteService/>} />
+                        <Route path="app/*" element={<RouteService/>} />
                     </Routes>
                     <GlobalStyle />
 
@@ -125,7 +125,7 @@ const App = ({match, history}) => {
         </Styled>
     </ThemeProvider>    
     ); 
-
+}
 
 
     // return (
@@ -133,6 +133,8 @@ const App = ({match, history}) => {
     //   Hello world container/App.js:)
     // </div>
     // );
-}
+
+
+
 
 export default App;

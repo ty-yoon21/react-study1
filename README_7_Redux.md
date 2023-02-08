@@ -30,7 +30,7 @@ connect함수와 useSelector함수에는 내부적으로 최적화가 잘 이루
 : 비동기작업을 자주 할 때  
 
 2. Redux 키워드
-: Action, Action Creator, Reducer, tore, Dispatch, Subscribe,  
+: Action, Action Creator, Reducer, Store, Dispatch, Subscribe,  
 2.1 Action  
 : 상태에 어떤 변화가 필요할 때 액션 발생시
 ```

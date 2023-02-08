@@ -17,7 +17,7 @@ react-study
 ├─ package.json                 [S-1] ### npm 설치 라이브러리 목록 ###
 ├─ .babelrc                     [S-2] ### babel 설정 ###
 ├─ webpack.config.js            [S-3] ### webpack 설정 ###
-├─ index.html                   [S-4] ### main template (Entry 0)###
+├─ index.html                   [S-4] ### Entry 0 (main template) ###
 ├─ public
 │  ├─ index.html                ### webpack에서 template: './index.html' 설정해서 해당 파일은 참고하지 않는다 ###
 ├─ src
@@ -72,4 +72,56 @@ react-study
 │  │  ├─ index.js               [M-7] Saga import / export 추가한다.
 │  ├─ setupTests.js
 ├─ README.md
+```
+
+## Summary
+1. Router
+```javascript
+1) App.js (### Entry1 ###)  
+: 여기에 Router (BrowseRouter), Routes, Route설정  
+: 라우터 최상단  
+
+2) container/App.js (### Entry2 ###)  
+: 실질적인 메인 페이지 (header, menuleft, main으로 구성)  
+: 여기에도 라우터가 있게되며 메뉴 클릭시 여기의 main메뉴에 뜨도록 컴포넌트를 배치함  
+import RouteService from "../utils/RouteService";
+<div>
+    <Routes>
+        <Route path="app2/*" element={<RouteService/>} />
+    </Routes>
+</div>
+
+3) ./utils/RouteService.js
+// .map 함수를 이용해서 리스트 형식으로 뿌렸기 때문에 key를 넣어줘야 함
+    return (
+            <div>
+                <Routes>
+                    {routerService && routerService.map((route, key) => (
+                        
+                        <Route key={key} path="sys/*" element={<route.element />} />
+
+                    ))}
+                </Routes>
+            </div>
+    );
+
+4) ./routes/system/index.js
+//마지막 최종 route (system 대메뉴의 하위메뉴로 가기 위한...)
+    return (
+        <div className='content-wrapper'>
+            <Routes>
+                <Route path="menu" element={<MenuPage />} exact />
+            </Routes>
+        </div>
+    );
+```
+
+2. Redux-Saga
+```javascript
+1) store 생성 (reducer create 및 saga apply) 및 App.js에 <Provider>로 적용
+2) 메뉴 화면에서 dispatch로 Action 요청
+3) Action 실행함수 발동 (./actions/***Actions.js)
+4) reducer로 가기전에 saga에서 중간 처리
+: 보통 RootSaga --> 해당 제너레이터 함수 (사가) --> 여기서 자바스크립트 함수 사용 (보통 API Call) --> Success시 Success 관련 Action 발생  
+--> Reducer에서 호출 메뉴에 새로운 상태 반환 (데이터 반환)  
 ```

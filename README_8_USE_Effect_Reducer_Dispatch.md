@@ -1,4 +1,4 @@
-# 7. useEffect, useReducer, useDispatch, useSelector, useMemo, useCallback 
+# 8. useEffect, useReducer, useDispatch, useSelector, useMemo, useCallback 
 
 참고용 velog
 https://velog.io/@ty-yun21/react8
