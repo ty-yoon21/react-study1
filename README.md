@@ -7,12 +7,13 @@ https://github.com/ty-yoon21/react-study1
 
 
 ## How to use
-0. Download VSCode
+0. Download VSCode  
 https://code.visualstudio.com/download  
-1. make directory (terminal or powershell)
+1. make directory (terminal or powershell)  
 (ex. mkdir project_react_portal_20230209)  
-2. git clone https://github.com/ty-yoon21/react-study1.git  
-: Skip if you want to start with nothing  (Instead, Create React App via `$npx create-react-app react-portal` after npm installation.)
+2. git clone https://github.com/ty-yoon21/react-study1.git   
+: Skip if you want to start with nothing   
+(Instead, Create React App via `$npx create-react-app react-portal` after npm installation.)  
 3. open with vscode
 4. npm  
 4.1 Installation  
