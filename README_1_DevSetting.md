@@ -12,19 +12,37 @@ commit message :
 3. webpack, babel을 이용해 개발환경 설정
 
 ## 사용법
-1. make directory
+0. Download VSCode
+https://code.visualstudio.com/download  
+1. make directory (terminal or powershell)
+(ex. mkdir project_react_portal_20230209)  
 2. git clone https://github.com/ty-yoon21/react-study1.git
 3. open with vscode
-4. `npm install`
-5. `npm start`  
+4. npm
+4.1 설치  
+4.1.1 mac  
+brew install node  
+4.1.2 windows  (LTS, msi)
+https://nodejs.org/en/download/  
+** If you use vscode's terminal restart vscode  
+4.2 `npm install  --force`  
+--> (npm install --> Error occur (react v18 <-> material-ui))  
+4.3. `npm start`   
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+npm install @material-ui/core --force  
+npm install @material-ui/icons --force  
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.  
+  
+    
 
-## Settings
+
+## Settings (Start from nothing)
 ### 정리
 1. npx create-react-app 을 통해서 프로젝트 생성
 : 현재 react 18로 pjt가 생성되기 때문에 나는 17로 변경함  
---> 다시 그냥 18로 했다  (material ui는 npm install --force로 해결했었던걸로 기억)
+--> 다시 그냥 18로 했다 
 2. npm, yarn 사용법에 대해 알아두자
 3. package.json 에 대해 알아두자 
 4. webpack, babel을 이용해서 dev환경 실행  
@@ -48,9 +66,9 @@ https://trend21c.tistory.com/2250
 `npm i`
 2) src/App.js 파일 변경
 ```
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';    //for react18
 -->
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';           //for react17
 ```
 
 4. npm devDependencies  
