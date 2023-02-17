@@ -75,6 +75,7 @@ const getListRequest = async (request) =>
         url: '/api/sys/menu/list',
         data: JSON.stringify(request.payload),
         //headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}` 'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
     }).then((response) => {
         return response;
     }).catch((error) => {

@@ -157,7 +157,7 @@ const users = [
     }
 ];
 const nextId = useRef(3);
-const onCrate = () = {
+const onCreate = () = {
     nextId.current += 1;
 }
 
