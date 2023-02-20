@@ -64,6 +64,7 @@ const getMenusListRequest = async (request) => {
     try {
         const response = yield call(getListRequest, action);
         yield put(getTsysMenuListSuccess(response));
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - response : ',response.data);
     }catch(error) {
         yield put(getTsysMenuListFailure(error));
     }

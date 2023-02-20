@@ -3,6 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Wijmo
 import * as wjFlexGrid from '@grapecity/wijmo.react.grid';
+import {
+    FlexGrid,
+    FlexGridColumn,
+    FlexGridCellTemplate
+  } from "@grapecity/wijmo.react.grid";
+import { getData } from "./data";
+
+
 import * as wjGrid from '@grapecity/wijmo.grid';
 import * as wjcCore from '@grapecity/wijmo';
 import * as wjGridFilter from '@grapecity/wijmo.react.grid.filter';
@@ -28,9 +36,13 @@ const MenuPage = (props) => {
     const theGrid = useRef();
     const groupPanelRef = useRef();
 
+
+
     // // validating Grid Data
     const validGrid = (item, propName) => {
-        
+        //console.log('######################### state.tsysMenuReducer.grid.data : ', state.tsysMenuReducer.grid.data);
+        console.log('########## item : ', item);
+        console.log('########## propName : ', propName);
         switch (propName) {
             case "systemCd":
                 console.log('########### item.systemCd : ',item.systemCd);
@@ -54,9 +66,9 @@ const MenuPage = (props) => {
                     : errors.length == 1
                     ? errors[0]
                     : null;
-            default:
-                return null;
         }
+
+        return null;
     };
 
 
@@ -77,6 +89,8 @@ const MenuPage = (props) => {
         console.log('###################dispatch(getTsysMenuList');
         dispatch(getTsysMenuList({}));
         groupPanelRef.current.control.grid = flex;
+        // groupPanelRef.current.control.grid = flex;
+        console.log('########################### flex');
         let selector = new Selector(flex, {
             itemChecked: (s, e) => {
                 console.log(flex.rows.filter((r) => r.isSelcted));
@@ -86,16 +100,22 @@ const MenuPage = (props) => {
         //custom rendering for headers and "Diff" columns
         flex.formatItem.addHandler((s,e) => {
 
+            console.log('################ e');
+            console.log('################ s');
+            console.log('################ e.cell.innerHTML : ', e.cell.innerHTML);
             if(e.panel === s.columnHeaders) {
                 console.log('e.panel == s.columnHeaders');
                 e.cell.innerHTML =
                     '<div class="v-center">' + e.cell.innerHTML + '</div>';
             }
+            console.log('################ custom rendering');
+            console.log('################ e.panel : ', e.panel);
+            console.log('################ s.cells', s.cells);
+            console.log('################ s.columnHeaders', s.columnHeaders);
             //custom rendering for "Diff" columns
             if (e.panel == s.cells){
-                let col = s.columns[e.col];
+                let col = s.colums[e.col];
                 console.log('################ custom rendering2');
-                console.log('################ col.binding : ', col.binding);
                 if(
                     e.row >= 0 &&
                     (
@@ -115,8 +135,7 @@ const MenuPage = (props) => {
                         col.binding == "filePath"
                     )
                 ) {
-                    console.log('################ custom backgroudColor');
-                    e.cell.style.backgroundColor = "#effad6";
+                    e.cell.style.backgroudColor = "#effad6";
                 }
             }
             console.log('################ custom rendering3');
@@ -141,7 +160,7 @@ const MenuPage = (props) => {
     return (
         <div id='main'>
                 <div className='main_title'>
-                    <MainTitle path='시스템관리' title='시스템 메뉴코드!!'/>
+                    <MainTitle title='시스템 메뉴코드!!'/>
                 </div>
                 <div className='main_wrap'>
                     <div className='search-area responsive row-flex-end'>
@@ -156,11 +175,28 @@ const MenuPage = (props) => {
                     </div>
 
 
+                    <div className="container-fluid">
+
+<h3>React DataGrid Component</h3>
+<hr />
+<p>
+  Simple React sample which generates columns from a column definitions array.
+</p>
+  
+<FlexGrid autoGenerateColumns={false}>
+  <FlexGridColumn visible={false} />
+  <FlexGridColumn header="ID" />
+  <FlexGridColumn header="ID2" />
+  <FlexGridColumn header="ID3" />
+</FlexGrid>
+
+</div>
+
                     <div style={{display: "block"}}>
 
-                        <wjFlexGrid.FlexGrid 
+                        {/* <wjFlexGrid.FlexGrid 
                             ref={theGrid}
-                            itemsSource={view}
+                            itemSource={view}
                             selectionMode="Row"
                             deferResizing={true}
                             showMarquee={true}
@@ -214,7 +250,8 @@ const MenuPage = (props) => {
                                 isRequired={false}
                             />
                         
-                        </wjFlexGrid.FlexGrid>
+                        </wjFlexGrid.FlexGrid> */}
+                        <h2>hi2</h2>
                     </div>
                 </div>
         </div>

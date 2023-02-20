@@ -1,0 +1,39 @@
+.wj-flexgrid {
+    margin-bottom: 2in;
+    font-size: small;
+    text-align: center;
+}
+
+/* 사용자 정의 Wijmo Style */
+/* Material Style */
+
+.wj-flexgrid .wj-content {
+    border-radius: 4px;
+    backgroud-color: #ffffff;
+    color: #333333;
+}
+.wj-flexgrid .wj-header {
+    background-color: #3e50b4;
+    color: #ffffff;
+}
+.wj-flexgrid .wj-state-selected {
+    background-color: #ff4f80;
+    color: #ffffff;
+}
+.wj-flexgrid .wj-state-multi-selected {
+    background-color: #f2a9c2;
+    color: #ffffff;
+
+}
+.wj-flexgrid .wj-tooltip {
+    background-color: #ffffe5;
+    color: #333333;
+}
+.wj-flexgrid .wj-cell:not(.wj-header):not(.wj-group):not(.wj-alt):not(.wj-state-selected):not(.wj-state-multi-selected) {
+    background-color: #ffffff;
+    color: #333333;
+}
+.wj-flexgrid .wj-alt:not(.wj-header):not(.wj-group):not(.wj-state-selected):not(.wj-state-multi-selected) {
+    background-color: #f9f9f9;
+    columns: #333333;
+}

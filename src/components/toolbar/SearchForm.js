@@ -30,6 +30,16 @@ const SerachForm = (props) => {
 
     const onSearchBtnClick = () => {
 
+        const searchData = {
+            category: "name",
+            compCd: txtCompCd,
+            systemCd: txtSystemCd,
+            keyword: textKeyword,
+            year: "" + textYear,
+            month: "" + textMonth
+        }
+        handleOnSearch(searchData);
+
     };
 
 

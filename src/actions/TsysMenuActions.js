@@ -45,6 +45,7 @@ export const getTsysMenuList = (payload) => ({
 export const getTsysMenuListSuccess = (response) => ({
     type: TSYS_MENU_ON_GET_LIST_SUCCESS,
     payload : response.data
+    
 });
 
 /**

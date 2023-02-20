@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 
+// css
+import "./App.css";
+import "@grapecity/wijmo.styles/wijmo.css";
 
 const Styled = styled.div(
     ({side, layoutmode}) => `
@@ -50,6 +53,38 @@ const Styled = styled.div(
     box-shadow: rgb(0 0 0 / 10%) 1.95px 1.95px 2.6px;u
 
 }
+
+.row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .row-item {
+        width: 100%;
+    }
+    .row-item-title {
+        height: 50px;
+        border-bottom: 1px solod #ddd;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        font-size: 18px;
+        font-weight: 600;
+        background: #fff;
+        border-radius: 4px 4px 0 0;
+    }
+    .row-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        padding: 0 20px;
+        border-radius: 4px 4px 0 0;
+    }
+}
+
 /* main content */
 .main_title {
     display: flex;

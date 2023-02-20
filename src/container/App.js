@@ -69,7 +69,7 @@ const App = ({match, history}) => {
 //    console.log('############ App match.url > ', match.url)
 
     console.log('############## container/App.js');
-    console.log('####### container/App.js JSON.parse(window.localStorage.getItem(portal-config) : ', JSON.parse(window.localStorage.getItem('portal-config')));
+    //console.log('####### container/App.js JSON.parse(window.localStorage.getItem(portal-config) : ', JSON.parse(window.localStorage.getItem('portal-config')));
 
 
     return (
