@@ -1,6 +1,8 @@
 import React, {useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
+
 // Wijmo
 import * as wjFlexGrid from '@grapecity/wijmo.react.grid';
 import * as wjGrid from '@grapecity/wijmo.grid';
@@ -17,8 +19,10 @@ import SearchForm from '../../../components/toolbar/SearchForm';
 import GridButtonBar from '../../../components/toolbar/GridButtonBar';
 
 
+// Redux Action
 import {
     getTsysMenuList,
+    saveTsysMenu
  } from '../../../actions';
 
 
@@ -33,7 +37,7 @@ const MenuPage = (props) => {
         
         switch (propName) {
             case "systemCd":
-                console.log('########### item.systemCd : ',item.systemCd);
+                //console.log('########### item.systemCd : ',item.systemCd);
                 return item.systemCd == null || item.systemCd == "" ? "Invalid" : "";
             case "name":
                 return item.name == null || item.name == "" ? "Invalid" : "";
@@ -74,7 +78,7 @@ const MenuPage = (props) => {
     //Initial Grid
     const initGrid = (flex) => {
         //dispatch(getTsysCodeList({ systemCd: "100000"}));
-        console.log('###################dispatch(getTsysMenuList');
+        //console.log('###################dispatch(getTsysMenuList)');
         dispatch(getTsysMenuList({}));
         groupPanelRef.current.control.grid = flex;
         let selector = new Selector(flex, {
@@ -87,15 +91,18 @@ const MenuPage = (props) => {
         flex.formatItem.addHandler((s,e) => {
 
             if(e.panel === s.columnHeaders) {
-                console.log('e.panel == s.columnHeaders');
+                //console.log('e.panel == s.columnHeaders');
                 e.cell.innerHTML =
                     '<div class="v-center">' + e.cell.innerHTML + '</div>';
             }
             //custom rendering for "Diff" columns
             if (e.panel == s.cells){
                 let col = s.columns[e.col];
-                console.log('################ custom rendering2');
-                console.log('################ col.binding : ', col.binding);
+                //console.log('################ custom rendering2');
+                //console.log('################ col.binding : ', col.binding);
+                //console.log('################ e.panel : ', e.panel);
+                //console.log('################ s.cells : ', s.cells);
+                //console.log('################ col : ', col);
                 if(
                     e.row >= 0 &&
                     (
@@ -115,11 +122,11 @@ const MenuPage = (props) => {
                         col.binding == "filePath"
                     )
                 ) {
-                    console.log('################ custom backgroudColor');
+                    //console.log('################ custom backgroudColor');
                     e.cell.style.backgroundColor = "#effad6";
                 }
             }
-            console.log('################ custom rendering3');
+            //console.log('################ custom rendering3');
         });
     };
 
@@ -150,13 +157,18 @@ const MenuPage = (props) => {
                                 <SearchForm />
                             </li>
                             <li className='search-area-condition item2'>
-                                <GridButtonBar />
+                                <GridButtonBar 
+                                    flex={theGrid}
+                                    valid={validGrid}
+                                    onSave={saveTsysMenu}
+                                />
                             </li>
                         </ul>                        
                     </div>
 
 
                     <div style={{display: "block"}}>
+
 
                         <wjFlexGrid.FlexGrid 
                             ref={theGrid}
@@ -177,42 +189,42 @@ const MenuPage = (props) => {
                                 placeholder="Drag Columns here to create groups."
                             />
 
-                            <wjFlexGrid.FlexGridColumn 
-                                header="System Code"
+                            {/* <wjFlexGrid.FlexGridColumn 
+                                header="시스템코드"
                                 binding="systemCd"
                                 width="1*"
                                 isRequired={true}
                             />
                             <wjFlexGrid.FlexGridColumn 
-                                header="System Name"
+                                header="시스템명"
                                 binding="systemName"
                                 width="1*"
                                 isRequired={true}
                             />
                             <wjFlexGrid.FlexGridColumn 
-                                header="Parent Code"
+                                header="상위코드"
                                 binding="prntCd"
                                 width="1*"
                                 isRequired={true}
                             />
                             <wjFlexGrid.FlexGridColumn 
-                                header="Code"
+                                header="코드"
                                 binding="menuCd"
                                 width="1*"
                                 isRequired={true}
                             />
                             <wjFlexGrid.FlexGridColumn 
-                                header="Code Name"
+                                header="코드명"
                                 binding="name"
                                 width="2*"
                                 isRequired={true}
                             />
                             <wjFlexGrid.FlexGridColumn 
-                                header="Menu Path"
+                                header="메뉴 경로"
                                 binding="menuPath"
                                 width="1*"
                                 isRequired={false}
-                            />
+                            /> */}
                         
                         </wjFlexGrid.FlexGrid>
                     </div>

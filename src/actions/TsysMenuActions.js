@@ -17,6 +17,10 @@ TSYS_MENU_GET_LIST_SUCCESS,
 TSYS_MENU_GET_LIST_FAILURE
 } from './types';
 
+
+/**
+ * Redux Action Get Menu From Main MENU - Get, Success, Failure
+ */
 export const getTsysMenusList = () => ({
     type: TSYS_MENU_GET_LIST
 });
@@ -32,26 +36,39 @@ export const getTsysMenusListFailure = (error) => ({
 });
 
 /**
- * Redux Action Get
+ * Redux Action Get, Success, Failure
  */
 export const getTsysMenuList = (payload) => ({
     type: TSYS_MENU_ON_GET_LIST,
     payload : payload
 });
 
-/**
- * Redux Action Get Success
- */
 export const getTsysMenuListSuccess = (response) => ({
     type: TSYS_MENU_ON_GET_LIST_SUCCESS,
     payload : response.data
     
 });
 
-/**
- * Redux Action Get
- */
  export const getTsysMenuListFailure = (error) => ({
     type: TSYS_MENU_ON_GET_LIST_FAILURE,
     payload : error
+});
+
+
+/**
+ * Redux Action Save, Success, Failure
+ */
+export const saveTsysMenu = (payload) => ({
+    type: TSYS_MENU_ON_SAVE,
+    payload: payload
+});
+
+export const saveTsysMenuSuccess = (response) => ({
+    type: TSYS_MENU_ON_SAVE_SUCCESS,
+    payload: response
+});
+
+export const saveTsysMenuFailure = (error) => ({
+    type: TSYS_MENU_ON_SAVE_FAILURE,
+    payload: error
 });

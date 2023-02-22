@@ -1,16 +1,10 @@
 import React, {useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
+
 // Wijmo
 import * as wjFlexGrid from '@grapecity/wijmo.react.grid';
-import {
-    FlexGrid,
-    FlexGridColumn,
-    FlexGridCellTemplate
-  } from "@grapecity/wijmo.react.grid";
-import { getData } from "./data";
-
-
 import * as wjGrid from '@grapecity/wijmo.grid';
 import * as wjcCore from '@grapecity/wijmo';
 import * as wjGridFilter from '@grapecity/wijmo.react.grid.filter';
@@ -35,79 +29,127 @@ const MenuPage = (props) => {
     const dispatch = useDispatch();
     const theGrid = useRef();
     const groupPanelRef = useRef();
-    //const menuList = useSelector((state) => state.tsysMenuReducer.grid.data);
-    const menuList = useSelector((state) => state);
+
+    // // validating Grid Data
+    const validGrid = (item, propName) => {
+        
+        switch (propName) {
+            case "systemCd":
+                console.log('########### item.systemCd : ',item.systemCd);
+                return item.systemCd == null || item.systemCd == "" ? "Invalid" : "";
+            case "name":
+                return item.name == null || item.name == "" ? "Invalid" : "";
+            case "description":
+                return item.description == null || item.description == "" ? "Inavlid" : "";
+            case "menuCd":
+                return item.menuCd == null || item.menuCd == "" ? "Invalid" : "";
+            case null:
+                let errors = [];
+                for (let key in item) {
+                    let err = validGrid(item, key);
+                    if (err) {
+                        errors.push(err);
+                    }
+                }
+                return errors.length > 1
+                    ? "this item has " + errors.length + " errors"
+                    : errors.length == 1
+                    ? errors[0]
+                    : null;
+            default:
+                return null;
+        }
+    };
+
 
     //Binding Grid Data
-    const { view } = useSelector((state) => ({
-            view: new wjcCore.CollectionView(state.tsysMenuReducer.grid.data),
-        })
+    const { view, loading } = useSelector((state) => ({
+        
+        view: new wjcCore.CollectionView(state.tsysMenuReducer.grid.data, {
+            trackChanges: true,
+            getError: validGrid,
+        }),
+        loading: state.tsysMenuReducer.loading,
+    })
     );
 
     //Initial Grid
     const initGrid = (flex) => {
         //dispatch(getTsysCodeList({ systemCd: "100000"}));
-        console.log('###################initGrid - dispatch(getTsysMenuList)');
+        console.log('###################dispatch(getTsysMenuList)');
         dispatch(getTsysMenuList({}));
-        //groupPanelRef.current.control.grid = flex;
-        // groupPanelRef.current.control.grid = flex;
-        // console.log('########################### flex : ', flex);
-        // console.log('####### view : '+ view.items.length);
-        // console.log('############## menuList : ',menuList); 
-    
+        groupPanelRef.current.control.grid = flex;
+        let selector = new Selector(flex, {
+            itemChecked: (s, e) => {
+                console.log(flex.rows.filter((r) => r.isSelcted));
+            },
+        });
 
         //custom rendering for headers and "Diff" columns
         flex.formatItem.addHandler((s,e) => {
+
             if(e.panel === s.columnHeaders) {
                 console.log('e.panel == s.columnHeaders');
                 e.cell.innerHTML =
                     '<div class="v-center">' + e.cell.innerHTML + '</div>';
             }
-            // console.log('################ e');
-            // console.log('################ s');
-            // console.log('################ e.cell.innerHTML : ', e.cell.innerHTML);
-            // console.log('################ custom rendering');
-            // console.log('################ e.panel : ', e.panel);
-            // console.log('################ s.cells', s.cells);
-            // console.log('################ s.columnHeaders', s.columnHeaders);
             //custom rendering for "Diff" columns
             if (e.panel == s.cells){
                 let col = s.columns[e.col];
                 console.log('################ custom rendering2');
+                console.log('################ col.binding : ', col.binding);
                 if(
                     e.row >= 0 &&
                     (
                         col.binding == "systemCd" ||
                         col.binding == "menuCd" || 
-                        col.binding == "name"
+                        col.binding == "name" ||
+                        col.binding == "nameEng" ||
+                        col.binding == "nameEtc" ||
+                        col.binding == "prntCd" ||
+                        col.binding == "menuType" ||
+                        col.binding == "menuPath" ||
+                        col.binding == "sortSq" ||
+                        col.binding == "pcYn" ||
+                        col.binding == "mobileYn" ||
+                        col.binding == "useYn" ||
+                        col.binding == "icon" ||
+                        col.binding == "filePath"
                     )
                 ) {
-                    e.cell.style.backgroudColor = "#effad6";
+                    console.log('################ custom backgroudColor');
+                    e.cell.style.backgroundColor = "#effad6";
                 }
             }
             console.log('################ custom rendering3');
-            console.log('############## menuList333 : ',menuList);
-            console.log('############## view333 : ',view);
         });
     };
 
-    const onLoadMenu = () => {
-        console.log('################ onLoadMenu');
-        console.log('############## onLoadMenu menulist : ',menuList);
-        console.log('############## onLoadMenu view : ',view);
-    }
+    //system code
+    // const { systemCdMap } = useSelector((state) => ({
+    //     systemCdMap: state.tsysSystemReducer.grid.data,
+    // }))
+
+
+    const getUseMap = () => {
+        return [
+            { codeCd: "Y", name: "Y"},
+            { codeCd: "N", name: "N"},
+        ];
+    };
+
+
 
     return (
         <div id='main'>
                 <div className='main_title'>
-                    <MainTitle title='시스템 메뉴코드!!'/>
+                    <MainTitle path='시스템관리' title='시스템 메뉴코드!!'/>
                 </div>
                 <div className='main_wrap'>
                     <div className='search-area responsive row-flex-end'>
                         <ul>
                             <li className='search-area-condition item1'>
-                                <SearchForm onSearch={getTsysMenuList} />
-                                <button onClick={onLoadMenu}>메뉴 불러오기</button>
+                                <SearchForm />
                             </li>
                             <li className='search-area-condition item2'>
                                 <GridButtonBar />
@@ -115,9 +157,10 @@ const MenuPage = (props) => {
                         </ul>                        
                     </div>
 
+
                     <div style={{display: "block"}}>
 
-                    <wjFlexGrid.FlexGrid
+                        <wjFlexGrid.FlexGrid 
                             ref={theGrid}
                             itemsSource={view}
                             selectionMode="Row"
@@ -128,14 +171,52 @@ const MenuPage = (props) => {
                             allowDelete={true}
                             newRowAtTop={true}
                             initialized={(s) => initGrid(s)}
-                            columns={[
-                                { binding: 'systemCd', header: 'systemCd' },
-                                { binding: 'prntCd', header: 'prntCd' },
-                                { binding: 'menuCd', header: 'menuCd' },
-                                { binding: 'name', header: 'name' }
-                            ]}
-                    />
-                        <h2>hi2</h2>
+                        >
+                             
+                            <wjGridFilter.FlexGridFilter />
+                            <wjGroupPanel.GroupPanel
+                                ref={groupPanelRef}
+                                placeholder="Drag Columns here to create groups."
+                            />
+
+                            <wjFlexGrid.FlexGridColumn 
+                                header="시스템코드"
+                                binding="systemCd"
+                                width="1*"
+                                isRequired={true}
+                            />
+                            <wjFlexGrid.FlexGridColumn 
+                                header="시스템명"
+                                binding="systemName"
+                                width="1*"
+                                isRequired={true}
+                            />
+                            <wjFlexGrid.FlexGridColumn 
+                                header="상위코드"
+                                binding="prntCd"
+                                width="1*"
+                                isRequired={true}
+                            />
+                            <wjFlexGrid.FlexGridColumn 
+                                header="코드"
+                                binding="menuCd"
+                                width="1*"
+                                isRequired={true}
+                            />
+                            <wjFlexGrid.FlexGridColumn 
+                                header="코드명"
+                                binding="name"
+                                width="2*"
+                                isRequired={true}
+                            />
+                            <wjFlexGrid.FlexGridColumn 
+                                header="메뉴 경로"
+                                binding="menuPath"
+                                width="1*"
+                                isRequired={false}
+                            />
+                        
+                        </wjFlexGrid.FlexGrid>
                     </div>
                 </div>
         </div>

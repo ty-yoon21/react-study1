@@ -40,8 +40,13 @@ const TsysMenuReducer = (state = INIT_STATE, action) => {
             return { ...state, loading: false, grid: {data: action.payload.body}};}
             //return { ...state, loading: false, menuList: action.payload.body};}
         case TSYS_MENU_ON_GET_LIST_FAILURE: { return { ...state, loading: false};}
-        case TSYS_MENU_ON_SAVE: { return { ...state, loading: true};}
-        case TSYS_MENU_ON_SAVE_SUCCESS: { return { ...state, loading: false};}
+        case TSYS_MENU_ON_SAVE: { 
+            console.log('##### TsysMenuReducer - TSYS_MENU_ON_SAVE ');
+            return { ...state, loading: true};}
+        case TSYS_MENU_ON_SAVE_SUCCESS: { 
+            console.log('##### TsysMenuReducer - TSYS_MENU_ON_SAVE_SUCCESS ');
+            toast.success("Success!");
+            return { ...state, loading: false};}
         case TSYS_MENU_ON_SAVE_FAILURE: { return { ...state, loading: false};}
         case TSYS_MENU_ON_SEND: { return { ...state, loading: true};}
         case TSYS_MENU_ON_SEND_SUCCESS: { return { ...state, loading: false};}

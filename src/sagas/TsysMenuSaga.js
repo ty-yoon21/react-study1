@@ -32,6 +32,7 @@ import {message} from 'antd';
 /**
  * Get & Send Menus List From Server
  */
+//Menu Code menu
 function* getMenusListFromServer() {
     try {
         const response = yield call (getMenusListRequest);
@@ -41,6 +42,7 @@ function* getMenusListFromServer() {
     }
 }
 
+// Main menu
 const getMenusListRequest = async (request) => {
 
     await api({
@@ -75,15 +77,44 @@ const getListRequest = async (request) =>
         method: 'post',
         url: '/api/sys/menu/list',
         data: JSON.stringify(request.payload),
-        //headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}` 'Content-Type': 'application/json'},
         headers: {'Content-Type': 'application/json'},
+        //headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}` 'Content-Type': 'application/json'},
+        
     }).then((response) => {
         return response;
     }).catch((error) => {
         return error;
     });
 
+// save - post to server
+function* postListToServer(action) {
+    try {
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - postListToServer - response.data : gogo');
+        const response = yield call(postListRequest, action);
+        yield put(saveTsysMenuSuccess(response));
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - postListToServer - response.data : ',response.data);
+    } catch (error) {
+        yield put(saveTsysMenuFailure(error));
+    }
+}
 
+const postListRequest = async (request) => {
+    await api({
+        method: "post",
+        url: "/api/sys/menu/save",
+        data: JSON.stringify(request.payload),
+        headers: {'Content-Type': 'application/json'},
+        // headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`, 'Content-Type': 'application/json'},
+
+        }
+        )
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error;
+        });
+}
 
 
 
@@ -93,8 +124,15 @@ const getListRequest = async (request) =>
  export function* getTsysMenusList() {
     yield takeEvery(TSYS_MENU_GET_LIST, getMenusListFromServer);
 }
+// 시스템 메뉴코드 화면에서 호출
 export function* getTsysMenuList() {
+    console.log('### saga - getTsysMenuList');
     yield takeEvery(TSYS_MENU_ON_GET_LIST, getListFromServer);
+}
+export function* saveTsysMenu() {
+    console.log('### saga - saveTsysMenu');
+    yield takeEvery(TSYS_MENU_ON_SAVE, postListToServer);
+    //yield throttle(1000, TSYS_MENU_ON_SAVE, postListToServer);
 }
 
 
@@ -105,5 +143,6 @@ export function* getTsysMenuList() {
 export default function* rootSaga() {
 yield all( [
     fork(getTsysMenuList),
+    fork(saveTsysMenu),
 ])
 }

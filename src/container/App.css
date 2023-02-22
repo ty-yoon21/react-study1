@@ -12,6 +12,11 @@
     backgroud-color: #ffffff;
     color: #333333;
 }
+
+.wj-cell .wj-header {
+    background-color: #3e50b4;
+    color: #ffffff;
+}
 .wj-flexgrid .wj-header {
     background-color: #3e50b4;
     color: #ffffff;
