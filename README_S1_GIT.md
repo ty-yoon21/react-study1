@@ -14,6 +14,12 @@
 : vscode + git 명령어  
 ```
 git remote update
+-----> git 서버의 저장소의 상태를 업데이트합니다.
+
+git checkout origin/(branch명)
+----->  git 서버에 있는 branch를 내 로컬 git으로 가져오면서 그 branch를 선택합니다.
+
+
 
 ```
 
