@@ -35,24 +35,31 @@ import {message} from 'antd';
 //Menu Code menu
 function* getMenusListFromServer() {
     try {
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - getMenusListFromServer (main menu)');
         const response = yield call (getMenusListRequest);
+        //yield put(getTsysMenusListSuccess(response));
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - getMenusListFromServer (main menu2)');
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - getMenusListFromServer - response.data.statusCode : ',response);
         if(response.data.statusCode ===0) yield put(getTsysMenusListSuccess(response));
     } catch (error) {
-        message.error('SERVER ERROR') 
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - getMenusListFromServer error - response :',error);
+        message.error('SERVER ERROR : ',error) 
     }
 }
 
 // Main menu
-const getMenusListRequest = async (request) => {
-
+const getMenusListRequest = async () => {
+    console.log('#######getMenusListRequest');
     await api({
         method: 'post',
         url: '/api/sys/menu/getSystemMenuList',
-        data: JSON.stringify(request.payload),
+        headers: {'Content-Type': 'application/json'},
         // headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`, 'Content-Type': 'application/json'},
     }).then((response) => {
+        console.log('#######getMenusListRequest Response Success - response : ',response);
         return response;
     }).catch((error) => {
+        console.log('#######getMenusListRequest Error : ', error);
         return error;
     });
 };
@@ -81,6 +88,7 @@ const getListRequest = async (request) =>
         //headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}` 'Content-Type': 'application/json'},
         
     }).then((response) => {
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - 메뉴페이지 - getListRequest : ',response);
         return response;
     }).catch((error) => {
         return error;
@@ -91,6 +99,7 @@ function* postListToServer(action) {
     try {
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - postListToServer - response.data : gogo');
         const response = yield call(postListRequest, action);
+        
         yield put(saveTsysMenuSuccess(response));
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - postListToServer - response.data : ',response.data);
     } catch (error) {
@@ -122,6 +131,7 @@ const postListRequest = async (request) => {
  * Get List, save, import, send
  */
  export function* getTsysMenusList() {
+    console.log('### saga - getTsysMenuSSS');
     yield takeEvery(TSYS_MENU_GET_LIST, getMenusListFromServer);
 }
 // 시스템 메뉴코드 화면에서 호출
@@ -144,5 +154,6 @@ export default function* rootSaga() {
 yield all( [
     fork(getTsysMenuList),
     fork(saveTsysMenu),
+    fork(getTsysMenusList)
 ])
 }

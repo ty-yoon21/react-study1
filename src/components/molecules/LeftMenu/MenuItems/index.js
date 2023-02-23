@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getTreeData} from '../../../../utils/tree';
 //import classNames from 'classnames';
 import Styled from './Styled';
-import { MenuList } from '@material-ui/core';
+//import { MenuList } from '@material-ui/core';
 //import StyleDevops from './StyledDevops';
 //import StyledSvc from './StyledSvc';
-//import {getTsysMenusList} from '../../../../actions';
+import {getTsysMenusList,
+        getTsysMenuList
+} from '../../../../actions';
 
 function getItem(label, key, path, icon, children, type, color) {
     return {
@@ -41,6 +43,12 @@ const rootSubmenuKeys = ['sub1', 'sub2'];
 
 const MenuItems = ({color, sidebarBackgrounds}) => {
 
+    const dispatch = useDispatch();
+    //const {menuList} = useSelector((reducer) => reducer.tsysMenuReducer);
+    const menuList = useSelector((state) => state.tsysMenuReducer.grid.data);
+
+
+
     const params = useParams();
     const location = useLocation();
     const navigate = useNavigate();
@@ -50,7 +58,7 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
     const [openKeys, setOpenKeys] = useState([]);    
     const [menus, setMenus] = useState([]);
     const [menuItems, setMenuItmems] = useState([]);
-
+    
 
 
     const setSelectedMenuItem = (e) => {
@@ -62,21 +70,47 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
         }
     }
 
-    console.log('memustate >>> ', menuState);
-    console.log('color > ', {color});
+    console.log('memustate1 >>> ', menuState);
+    console.log('menuList1 >>> ', menuList);
+    //console.log('color > ', {color});
 
+    //develop
+    useEffect(() => {
+        console.log('########useeEffect1 - dispatch - getTsysMenusList()');
+        //dispatch(getTsysMenusList()); 
+        dispatch(getTsysMenuList({}));
+    }, [dispatch]);
 
+    useEffect(
+
+        useCallback(() => {
+            setMenuState([]);
+            setToItems();
+        }, [menuList]),
+        [menuList]
+    );
 
     const setToItems = () => {
-        MenuList.filter(f => f.lvl===1).map(l => setMenuState((prevState) => [...prevState, getItem(l.name, l.menuCd, l.menuPath,
-            <span className={l.icon}/>, getChildren(l.menuCd))]
-            )
-            )
-    }
+        console.log('memustate2 >>> ', menuState);
+        console.log('menuList2 >>> ', menuList);
+        menuList
+        .filter((f) => f.lvl === 1)
+        .map((l) => 
+            setMenuState((prevState) => [
+                ...prevState, 
+                getItem(l.name, l.menuCd, l.menuPath,
+                        <span className={l.icon}/>, 
+                        getChildren(l.menuCd)
+                        ),
+            ])
+        );
+    };
 
     const getChildren = (menuCd) => {
-        return MenuList.filter( f=> f.lvl ===2 && menuCd === f.prntCd).map(l=> getItem(l.name, l.menuCd, l.menuPath))
-    }
+        return menuList
+            .filter( f=> f.lvl ===2 && menuCd === f.prntCd)
+            .map(l=> getItem(l.name, l.menuCd, l.menuPath));
+    };
 
     const onOpenChange = keys => {
         const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
@@ -143,7 +177,10 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
             mode='inline'
             openKeys={openKeys}
             onOpenChange={onOpenChange}
-            items={items}
+            //load DB menu data
+            items={menuState}
+            //load key-in menu items
+            //items={items}
             onClick={setSelectedMenuItem}
             //onClick={e => setSelectedMenuItem(e.key)}
         />

@@ -75,10 +75,12 @@ const MenuPage = (props) => {
     })
     );
 
+
     //Initial Grid
     const initGrid = (flex) => {
         //dispatch(getTsysCodeList({ systemCd: "100000"}));
         //console.log('###################dispatch(getTsysMenuList)');
+        console.log('##################dispatch');
         dispatch(getTsysMenuList({}));
         groupPanelRef.current.control.grid = flex;
         let selector = new Selector(flex, {

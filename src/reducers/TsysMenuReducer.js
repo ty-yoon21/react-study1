@@ -31,12 +31,18 @@ const INIT_STATE = {
 
 const TsysMenuReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case TSYS_MENU_GET_LIST: { return { ...state, loading: true, menuList: []};}
-        case TSYS_MENU_GET_LIST_SUCCESS: { return { ...state, loading: false, menuList: action.payload.body};}
-        case TSYS_MENU_GET_LIST_FAILURE: { return { ...state, loading: false};}
+        case TSYS_MENU_GET_LIST: { 
+            console.log('##### TsysMenuReducer - TSYS_MENU_GET_LIST ');
+            return { ...state, loading: true, menuList: []};}
+        case TSYS_MENU_GET_LIST_SUCCESS: { 
+            console.log('##### TsysMenuReducer (MENU-GET) - action.payload.body : ', action.payload.body);
+            return { ...state, loading: false, menuList: action.payload.body};}
+        case TSYS_MENU_GET_LIST_FAILURE: { 
+            console.log('##### TsysMenuReducer (MENU-GET) - state : ', state);
+            return { ...state, loading: false};}
         case TSYS_MENU_ON_GET_LIST: { return { ...state, loading: true, menuList: []};}
         case TSYS_MENU_ON_GET_LIST_SUCCESS: { 
-            console.log('##### TsysMenuReducer - action.payload.body : ', action.payload.body);
+            console.log('##### TsysMenuReducer (MENU-ON-GET) - action.payload.body : ', action.payload.body);
             return { ...state, loading: false, grid: {data: action.payload.body}};}
             //return { ...state, loading: false, menuList: action.payload.body};}
         case TSYS_MENU_ON_GET_LIST_FAILURE: { return { ...state, loading: false};}
