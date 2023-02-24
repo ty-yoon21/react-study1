@@ -89,4 +89,5 @@ $ Yarn build
 https://velog.io/@jinsunee/2.-react-webpack-babel%EB%A1%9C-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0  
 webpack.config.js 설정 하는 방법 알아야 함  
 webpack과 babel을 왜 쓰는지 알아야 함  
-https://velog.io/@yon3115/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%ED%95%84%EC%88%98-Webpack%EC%9D%B4%EB%9E%80
+https://velog.io/@yon3115/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C-%ED%95%84%EC%88%98-Webpack%EC%9D%B4%EB%9E%80  
+https://devowen.com/313

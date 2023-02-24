@@ -1,12 +1,13 @@
-# REACT
-
+REACT
+======
+```
 velog for reference  
-https://velog.io/@ty-yun21  
+- https://velog.io/@ty-yun21  
 github for reference  
-https://github.com/ty-yoon21/react-study1  
+- https://github.com/ty-yoon21/react-study1  
+```
 
-
-## How to use
+## How to set
 0. Download VSCode  
 https://code.visualstudio.com/download  
 1. make directory (terminal or powershell)  
@@ -31,7 +32,9 @@ npm install @material-ui/core --force
 npm install @material-ui/icons --force
 ```
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.  
-
+  
+  
+  
 ## Directory
 1. Refer to [S-*] for initial setting, router, and main screen
 (Start from nothing...)   

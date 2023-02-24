@@ -150,7 +150,7 @@ export function* saveTsysMenu() {
  * Root Saga
 */
 //루트 사가를 만들어주겠습니다. 프로젝트에서 여러개의 사가를 만들게 될텐데, 이를 모두 합쳐서 루트 사가를 만듭니다.
-export default function* rootSaga() {
+export default function* tsysMenuSagas() {
 yield all( [
     fork(getTsysMenuList),
     fork(saveTsysMenu),

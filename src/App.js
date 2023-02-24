@@ -8,14 +8,14 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 
 //Router, redux, store, sagas...
-import { BrowserRouter as Router, Routes, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { Provider } from 'react-redux';
 import RootSaga from './sagas';
 import { configureStore } from './store';
 
-
-const store = configureStore(window.__INITIAL_STATE__);   //Create Store
-store.runSaga(RootSaga);                                  //Run Root Saga, // 주의: 스토어 생성이 된 다음에 위 코드를 실행해야합니다.
+//Create Store & Run Root Saga
+const store = configureStore(window.__INITIAL_STATE__);   
+store.runSaga(RootSaga);                                  // Note: You must run the above code after the store has been created.
 
 
 const MainApp = () => (

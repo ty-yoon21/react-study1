@@ -14,8 +14,6 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Switch,
-    Redirect
 } from "react-router-dom";
 import { Helmet} from "react-helmet";
 import { ThemeProvider } from 'styled-components';
