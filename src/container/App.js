@@ -100,7 +100,7 @@ const App = ({match, history}) => {
                 />
                 <div className="site-contents">
                     <Helmet>
-                        <title>SK ecoplant</title>
+                        <title>React Portal</title>
                         <meta name='description' content='React Study' />
                     </Helmet>
                     <Routes>
