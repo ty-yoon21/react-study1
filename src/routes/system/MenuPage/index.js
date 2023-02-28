@@ -150,7 +150,7 @@ const MenuPage = (props) => {
     return (
         <div id='main'>
                 <div className='main_title'>
-                    <MainTitle path='시스템관리' title='시스템 메뉴코드!!'/>
+                    <MainTitle path='시스템관리' title='시스템 메뉴코드'/>
                 </div>
                 <div className='main_wrap'>
                     <div className='search-area responsive row-flex-end'>

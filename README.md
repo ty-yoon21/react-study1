@@ -7,6 +7,11 @@ github for reference
 - https://github.com/ty-yoon21/react-study1  
 ```
 
+## Main Page Capture  
+![main page](/src/assets/img/main_page_capture.png)
+
+
+
 ## How to set
 0. Download VSCode  
 https://code.visualstudio.com/download  
