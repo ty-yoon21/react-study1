@@ -23,7 +23,8 @@ https://react.vlpt.us/redux/02-rules.html
 
 https://react.vlpt.us/redux-middleware/  
 3. Redux Middleware
-3.1 Why Redux Middleware?
 
+3.1 Why Redux Middleware?
+7
 4. Redux Saga  
 4.1 redux-saga, How it works?  
