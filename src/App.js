@@ -2,6 +2,7 @@
 import React from "react";
 import './App.css';
 import App from "./container/App";
+import LoginPage from "./routes/LoginPage";
 
 //UI
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -23,6 +24,7 @@ const MainApp = () => (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <Router>
         <Routes>
+          <Route path="/login" element={<LoginPage/>} />
           <Route path="/*" element={<App/>} />
           {/* <Route path="app/*" element={<App/>} /> */}
           {/* <Route path="app/*" element={<RouteService />} /> */}

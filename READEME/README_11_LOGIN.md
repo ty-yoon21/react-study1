@@ -10,3 +10,9 @@ Login - Spring Security, JWT, Redis
 
 2. Back  
 2.1 
+
+
+# 상세구현  
+1. src/App.js  
+: Route 추가  
+2. 
