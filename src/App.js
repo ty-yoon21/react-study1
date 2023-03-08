@@ -3,13 +3,13 @@ import React from "react";
 import './App.css';
 import App from "./container/App";
 import LoginPage from "./routes/LoginPage";
-
+import UserRegister from "./routes/UserRegister";
 //UI
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 
 //Router, redux, store, sagas...
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation} from "react-router-dom";
 import { Provider } from 'react-redux';
 import RootSaga from './sagas';
 import { configureStore } from './store';
@@ -20,11 +20,13 @@ store.runSaga(RootSaga);                                  // Note: You must run 
 
 
 const MainApp = () => (
+  
   <Provider store={store}>
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/userregister" element={<UserRegister />} />
           <Route path="/*" element={<App/>} />
           {/* <Route path="app/*" element={<App/>} /> */}
           {/* <Route path="app/*" element={<RouteService />} /> */}

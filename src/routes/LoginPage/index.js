@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import Login from './Styled';
 import { useDispatch, useSelector } from 'react-redux';
-//import {tAuthLogin} from '../../actions';
-
+import {tAuthLogin} from '../../actions';
+import {useNavigate, Link, useLocation} from 'react-router-dom';
 
 
 const LoginPage = () => {
 
     //const {error} = useSelector(reducer => reducer.tAuthReducer);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [state, setState] = useState({
-        username: '',
+        account: '',
         password: ''
     });
 
@@ -21,7 +23,7 @@ const LoginPage = () => {
 
     const onHandleSubmit = e => {
         e.preventDefault();
-        //dispatch(tAuthLogin({username: state.username, passwrod: state.password}))
+        dispatch(tAuthLogin({account: state.account, password: state.password, navigate}))
     }
 
     return (
@@ -50,7 +52,7 @@ const LoginPage = () => {
                             {/* {error && <p>{error}</p>} */}
                             <label htmlFor='userId'>
                                 ID
-                                <input type='text' id='username' name='username' value={state.username} onChange={onHandleChange}/>
+                                <input type='text' id='account' name='account' value={state.account} onChange={onHandleChange}/>
                             </label>
                             <label htmlFor='password'>
                                 PW
@@ -64,12 +66,15 @@ const LoginPage = () => {
                                 </li>                            
                             </ul>
                             <ul className='more-btns'>
-                                <li>
+                                <Link to="/userregister" state={{ background: location }}>
+                                    Sign up
+                                </Link>
+                                {/* <li>
                                     <a href='#none'>Sign Up</a>
                                 </li>
                                 <li>
                                     <a href='#none'>Forgot password?</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </form>
                     </div>

@@ -606,6 +606,14 @@ const Login = styled.div`
 
   }
 
+  .more-btns Link {
+
+    color: #666;
+
+    font-size: 16px;
+
+  }
+
   .more-btns li:first-child::after {
 
     content: '';

@@ -53,7 +53,8 @@ const getMenusListRequest = async () => {
     await api({
         method: 'post',
         url: '/api/sys/menu/getSystemMenuList',
-        headers: {'Content-Type': 'application/json'},
+        headers: {Authorization: `BEARER ${localStorage.getItem('jwt')}`, 'Content-Type': 'application/json'},
+        //headers: {'Content-Type': 'application/json'},
         // headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`, 'Content-Type': 'application/json'},
     }).then((response) => {
         console.log('#######getMenusListRequest Response Success - response : ',response);
@@ -84,8 +85,8 @@ const getListRequest = async (request) =>
         method: 'post',
         url: '/api/sys/menu/list',
         data: JSON.stringify(request.payload),
-        headers: {'Content-Type': 'application/json'},
-        //headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}` 'Content-Type': 'application/json'},
+        //headers: {'Content-Type': 'application/json'},
+        headers: {Authorization: `BEARER ${localStorage.getItem('jwt')}`, 'Content-Type': 'application/json'},
         
     }).then((response) => {
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysmenuSaga - 메뉴페이지 - getListRequest : ',response);
@@ -112,8 +113,8 @@ const postListRequest = async (request) => {
         method: "post",
         url: "/api/sys/menu/save",
         data: JSON.stringify(request.payload),
-        headers: {'Content-Type': 'application/json'},
-        // headers: {Authorization: `Bearer ${localStorage.getItem('id_token')}`, 'Content-Type': 'application/json'},
+        //headers: {'Content-Type': 'application/json'},
+        headers: {Authorization: `BEARER ${localStorage.getItem('jwt')}`, 'Content-Type': 'application/json'},
 
         }
         )
