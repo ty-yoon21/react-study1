@@ -1,25 +1,9 @@
-Login - Spring Security, JWT, Redis
-------------
+// import axios from 'axios';
 
-# 구현 목표 및 순서
-1. Front  
-1.1 Login Page 생성   
-: Login Page Component, Redux-Saga  
-1.2 로그인 상태가 아니라면 /login redirect  
-1.3 권한에 따른 메뉴 출력 처리  
-
-2. Back  
-2.1 
-
-
-# 상세구현  
-1. src/App.js  
-: Route 추가  
-2. 
-
-
-
-```
+// export default
+//     axios.create({
+//         timeout: 2000
+//     });
 
 
 
@@ -78,7 +62,7 @@ api.interceptors.response.use(
     } = error;
     console.log("api.interceptors.response.status : ",status);
     if (status === 401) {
-        console.log("api.interceptors.response.status : ",status);
+        console.log("api.interceptors.response.message : ",error.response.data.message);
       if (error.response.data.message === "expired") {
         const originalRequest = config;
         //const refreshToken = await localStorage.getItem("refreshToken");
@@ -110,7 +94,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-
-
-
-```

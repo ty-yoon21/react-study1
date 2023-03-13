@@ -11,6 +11,9 @@ import api from '../api';
 import {TAUTH_LOGIN, TAUTH_REGISTER} from '../actions/types';
 import {setTAuthIsAuth, setTAuthIsAuthError, tAuthRegister, tAuthRegisterSuccess, tAuthRegisterError} from '../actions';
 
+import { setRefreshToken } from '../utils/cookie';
+
+
 const post = async(url, request) => await api({
     mehod: 'post',
     url,
@@ -23,7 +26,7 @@ const post = async(url, request) => await api({
 }).cathch((error) => {
     console.log('######## error : ', error);
     if (error.response.status === 401) {
-        localStorage.removeItem('jwt');
+        localStorage.removeItem('jwt-access');
         //localStorage.removeItem('user');
         window.location = '/'
     }
@@ -76,7 +79,10 @@ function* tAuthLoginToServer(action) {
             //yield localStorage.setItem('jwt', JSON.stringify(response.data.token));
             console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response.data.token : ',response.data.token);
             //console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer JSON.stringfy(response.data.token) : ',JSON.stringfy(response.data.token));
-            yield localStorage.setItem('jwt', response.data.token);
+            //JSON.stringfy(response.data.token) 형태로 저장하게 되면 jwt에 ""가 씌여저서 오류발생함
+            yield localStorage.setItem('jwt-access', response.data.token);
+            setRefreshToken(response.data.refreshToken.value);
+
             navigate('/');
         } else if (response.data.statusCode === 0) {
             yield put(setTAuthIsAuthError(response))
