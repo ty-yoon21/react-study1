@@ -3,26 +3,43 @@ Login - Spring Security, JWT, Redis
 
 # 구현 목표 및 순서
 1. Front  
-1.1 Login Page 생성   
+[F-1] Login Page 생성   
 : Login Page Component, Redux-Saga  
-1.2 로그인 상태가 아니라면 /login redirect  
-1.3 권한에 따른 메뉴 출력 처리  
+[F-2] 로그인 상태가 아니라면 /login redirect  
+[F-3] 권한에 따른 메뉴 출력 처리  
 
 2. Back  
 2.1 
 
 
 # 상세구현  
-1. src/App.js  
-: Route 추가  
-2. 
+1. [F-1] src/App.js  
+: Route 추가  (login, userRegister)
+```js
+        <Routes>
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/userregister" element={<UserRegister />} />
+          <Route path="/*" element={<App/>} />
+          {/* <Route path="app/*" element={<RouteService />} /> */}
+        </Routes>
+```
 
+2. [F-1] LoiginPage, UserRegisterPag 생성
+```
+/routes/LoginPage/index.js
+/routes/UserRegister/index.js
+```
 
+3. [F-1] Action, Saga, Reducer 생성
 
+4. [F-1] Cookie
+```
+npm install react-cookie
+/utils/cookie.js 생성
 ```
 
 
-
+```
 //https://velog.io/@wooya/axios-interceptors%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-token%EB%A7%8C%EB%A3%8C%EC%8B%9C-refreshToken-%EC%9E%90%EB%8F%99%EC%9A%94%EC%B2%AD 참고
 import axios from "axios";
 

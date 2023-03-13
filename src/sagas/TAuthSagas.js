@@ -33,31 +33,6 @@ const post = async(url, request) => await api({
     return error;
 });
 
-
-
-// function* tAuthLoginToServer(action) {
-//     const {username, password, navigate} = action.payload;
-    
-//     const req = {
-//         payload: {
-//             USERNAME: username,
-//             PASSWORD: password
-//         }
-//     }
-//     try {
-//         const response = yield call(post, '/api/auth/login', req);
-//         if (response.data.statusCode === 0 && response.data.body.errorCode === 400){
-//             yield put(setTAuthIsAuthError(response))
-//         } else if (response.data.statusCode === 0) {
-//             yield put(setTAuthIsAuth(response));
-//             yield localStorage.setItem('User', JSON.stringify(response.data.body));
-//             navigate('/');
-//         }
-//     } catch (error) {
-//         message.error('Auth - SERVER ERROR');
-//     }
-// }
-
 function* tAuthLoginToServer(action) {
     const {account, password, navigate} = action.payload;
     
@@ -142,6 +117,7 @@ const getLoginRequest = async (request) =>
     }
 
     const getUserRegisterRequest = async (request) =>
+    
     await api( {
         method: 'post',
         url: '/api/auth/register',
@@ -170,3 +146,29 @@ export default function* TAuthSagas() {
         fork(ttAuthRegisterSagas),
     ]);
 }
+
+
+
+
+// function* tAuthLoginToServer(action) {
+//     const {username, password, navigate} = action.payload;
+    
+//     const req = {
+//         payload: {
+//             USERNAME: username,
+//             PASSWORD: password
+//         }
+//     }
+//     try {
+//         const response = yield call(post, '/api/auth/login', req);
+//         if (response.data.statusCode === 0 && response.data.body.errorCode === 400){
+//             yield put(setTAuthIsAuthError(response))
+//         } else if (response.data.statusCode === 0) {
+//             yield put(setTAuthIsAuth(response));
+//             yield localStorage.setItem('User', JSON.stringify(response.data.body));
+//             navigate('/');
+//         }
+//     } catch (error) {
+//         message.error('Auth - SERVER ERROR');
+//     }
+// }
