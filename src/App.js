@@ -28,10 +28,7 @@ const MainApp = () => (
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/userregister" element={<UserRegister />} />
           <Route path="/*" element={<App/>} />
-          {/* <Route path="app/*" element={<App/>} /> */}
           {/* <Route path="app/*" element={<RouteService />} /> */}
-          {/* <Route path="sys" element={<MenuPage />} /> */}
-          {/* <Route path="/app/sys/menu" element={<MenuPage />} />  */}
         </Routes>
       </Router>
     </MuiPickersUtilsProvider>

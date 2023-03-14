@@ -14,6 +14,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    Redirect
 } from "react-router-dom";
 import { Helmet} from "react-helmet";
 import { ThemeProvider } from 'styled-components';
@@ -38,6 +39,8 @@ const defaultConfig = {
 };
 
 const App = ({match, history}) => {
+
+    //const { authority } = window.localStorage.getItem("authority");
 
     const { width } = useWindowDimensions();
     const theme = {};
@@ -105,6 +108,8 @@ const App = ({match, history}) => {
                     </Helmet>
                     <Routes>
                         <Route path="app/*" element={<RouteService/>} />
+                        
+
                     </Routes>
                     <GlobalStyle />
 

@@ -2,7 +2,7 @@
  * Todo App Actions
  */
 
-import {TAUTH_LOGIN, TAUTH_SET_IS_AUTH, TAUTH_SET_IS_AUTH_ERROR, 
+import {TAUTH_LOGIN, TAUTH_IS_AUTH, TAUTH_SET_IS_AUTH, TAUTH_SET_IS_AUTH_BY_LOGIN, TAUTH_SET_IS_AUTH_ERROR, 
     TAUTH_REGISTER, TAUTH_REGISTER_SUCCESS, TAUTH_REGISTER_ERROR} from './types';
 
 /**
@@ -14,10 +14,20 @@ export const tAuthLogin = (payload) => ({
     payload
 });
 
+export const tAuthIsAuth = (payload) => ({
+    type: TAUTH_IS_AUTH,
+    payload
+});
+
 export const setTAuthIsAuth = (response) => ({
     type: TAUTH_SET_IS_AUTH,
     payload: response.data
 });
+
+export const setTAuthIsAuthByLogin = (response) => ({
+    type: TAUTH_SET_IS_AUTH_BY_LOGIN,
+    payload: response.data
+})
 
 export const setTAuthIsAuthError = (response) => ({
     type: TAUTH_SET_IS_AUTH_ERROR,

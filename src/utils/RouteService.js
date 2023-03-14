@@ -2,21 +2,23 @@
  * App Routes
  */
 
- import React from 'react';
- import {Routes, Route} from 'react-router-dom';
+import React from 'react';
+import {Routes, Route} from 'react-router-dom';
+  
+import routerService from '../services/_routerService';
+import WithAuth from '../components/Hoc/auth';
  
- import routerService from '../services/_routerService';
-
- 
- const RouterService = () => {
+const RouterService = () => {
     //const { match } = this.props;
     console.log('########################### RouterService');
     return (
             <div>
                 <Routes>
                     {routerService && routerService.map((route, key) => (
+                        //<Route key={key} path="sys/*" element={<route.element />} />
+                        //<Route key={key} path="sys/*" element={ withAuth(route.element) } />
+                        <Route key={key} path="sys/*" element= { <WithAuth><route.element /> </WithAuth>} />
                         
-                        <Route key={key} path="sys/*" element={<route.element />} />
 
                     ))}
 
@@ -29,6 +31,6 @@
                 </Routes>
             </div>
     );
- };
+};
  
- export default RouterService;
+export default RouterService;

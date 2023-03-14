@@ -70,8 +70,8 @@ const MenuItems = ({color, sidebarBackgrounds}) => {
         }
     }
 
-    console.log('memustate1 >>> ', menuState);
-    console.log('menuList1 >>> ', menuList);
+    //console.log('memustate1 >>> ', menuState);
+    //console.log('menuList1 >>> ', menuList);
     //console.log('color > ', {color});
 
     //develop

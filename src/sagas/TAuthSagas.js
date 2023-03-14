@@ -8,8 +8,8 @@ import {message} from 'antd';
 
 import api from '../api';
 
-import {TAUTH_LOGIN, TAUTH_REGISTER} from '../actions/types';
-import {setTAuthIsAuth, setTAuthIsAuthError, tAuthRegister, tAuthRegisterSuccess, tAuthRegisterError} from '../actions';
+import {TAUTH_LOGIN, TAUTH_IS_AUTH, TAUTH_REGISTER} from '../actions/types';
+import {setTAuthIsAuth, setTAuthIsAuthByLogin, setTAuthIsAuthError, tAuthRegister, tAuthRegisterSuccess, tAuthRegisterError} from '../actions';
 
 import { setRefreshToken } from '../utils/cookie';
 
@@ -33,6 +33,35 @@ const post = async(url, request) => await api({
     return error;
 });
 
+function* tAuthIsAuthFromServer(action) {
+    try{
+        const response = yield call(getisAuthRequest, action);
+        console.log('#################### tAuthIsAuthFromServer - reponse :', response);
+        if(response.data.statusCode ===0){
+            yield put(setTAuthIsAuth(response));
+        }
+    } catch(error) {
+        message.error("Server tAuthIsAuthFromServer Error");
+
+    }
+}
+
+const getisAuthRequest = async (request) =>
+    await api( {
+        method: 'post',
+        url: '/api/auth/isAuth',
+        data: JSON.stringify(request.payload),
+        //headers: {'Content-Type': 'application/json'},
+        headers: {Authorization: `Bearer ${localStorage.getItem('jwt-access')}`, 'Content-Type': 'application/json'},
+        
+    }).then((response) => {
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - getLoginRequest : ',response);
+        return response;
+    }).catch((error) => {
+        return error;
+    });
+
+
 function* tAuthLoginToServer(action) {
     const {account, password, navigate} = action.payload;
     
@@ -48,14 +77,16 @@ function* tAuthLoginToServer(action) {
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response : ',response);
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response.status : ',response.status);
         console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response.data.token : ',response.data.token);
+        console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response.data.roles.role : ',response.data.roles[0].role);
         if (response.status === 200){
             console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer ok : ');
-            yield put(setTAuthIsAuth(response));
+            yield put(setTAuthIsAuthByLogin(response));
             //yield localStorage.setItem('jwt', JSON.stringify(response.data.token));
             console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer response.data.token : ',response.data.token);
             //console.log('#############@@@@@@@@@@@@@@@@@@@@@@@ tsysAuthSagas - tAuthLoginToServer JSON.stringfy(response.data.token) : ',JSON.stringfy(response.data.token));
             //JSON.stringfy(response.data.token) 형태로 저장하게 되면 jwt에 ""가 씌여저서 오류발생함
             yield localStorage.setItem('jwt-access', response.data.token);
+            yield localStorage.setItem('authority', response.data.roles[0].role);
             setRefreshToken(response.data.refreshToken.value);
 
             navigate('/');
@@ -136,14 +167,19 @@ export function* tAuthLoginSagas() {
     yield takeEvery(TAUTH_LOGIN, tAuthLoginToServer);
 }
 
-export function* ttAuthRegisterSagas() {
+export function* tAuthRegisterSagas() {
     yield takeEvery(TAUTH_REGISTER, tAuthRegisterToServer);
+}
+
+export function* tAuthISAuthSagas() {
+    yield takeEvery(TAUTH_IS_AUTH, tAuthIsAuthFromServer);
 }
 
 export default function* TAuthSagas() {
     yield all( [
         fork(tAuthLoginSagas),
-        fork(ttAuthRegisterSagas),
+        fork(tAuthRegisterSagas),
+        fork(tAuthISAuthSagas),
     ]);
 }
 
