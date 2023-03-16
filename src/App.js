@@ -26,7 +26,7 @@ const MainApp = () => (
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage/>} />
-          <Route path="/userregister" element={<UserRegister />} />
+          <Route path="/userRegister" element={<UserRegister />} />
           <Route path="/*" element={<App/>} />
           {/* <Route path="app/*" element={<RouteService />} /> */}
         </Routes>

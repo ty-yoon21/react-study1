@@ -66,7 +66,7 @@ const LoginPage = () => {
                                 </li>                            
                             </ul>
                             <ul className='more-btns'>
-                                <Link to="/userregister" state={{ background: location }}>
+                                <Link to="/userRegister" state={{ background: location }}>
                                     Sign up
                                 </Link>
                                 {/* <li>

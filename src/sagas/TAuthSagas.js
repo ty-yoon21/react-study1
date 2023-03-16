@@ -35,7 +35,7 @@ const post = async(url, request) => await api({
 
 function* tAuthIsAuthFromServer(action) {
     try{
-        const response = yield call(getisAuthRequest, action);
+        const response = yield call(getIsAuthRequest, action);
         console.log('#################### tAuthIsAuthFromServer - reponse :', response);
         if(response.data.statusCode ===0){
             yield put(setTAuthIsAuth(response));
@@ -46,7 +46,7 @@ function* tAuthIsAuthFromServer(action) {
     }
 }
 
-const getisAuthRequest = async (request) =>
+const getIsAuthRequest = async (request) =>
     await api( {
         method: 'post',
         url: '/api/auth/isAuth',
